@@ -1,3 +1,4 @@
 # Luolastopeli
 
-Moikka moi
+#Dokumentaatio
+[aihemäärittely](dokumentaatio/aiheenKuvausJaMääritelmä.md)
