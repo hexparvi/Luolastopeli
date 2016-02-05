@@ -1,26 +1,25 @@
-package luolasto.luolastopeli.logiikka;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import java.util.Scanner;
+package luolasto.luolastopeli.logiikka;
+
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author hexparvi
  */
-public class MapLoaderTest {
+public class SpriteTest {
     
-    public MapLoaderTest() {
+    public SpriteTest() {
     }
     
     @BeforeClass
@@ -44,18 +43,4 @@ public class MapLoaderTest {
     //
     // @Test
     // public void hello() {}
-    
-    @Test
-    public void arraySizeIsCorrect() {
-        
-    }
-    
-    @Test
-    public void loadWorks() {
-        MapLoader loader = new MapLoader(new Scanner("**\n.."), 2);
-        loader.load();
-        char[][] loadedMap = loader.getMap();
-        char[][] compare = new char[][]{"**".toCharArray(), "..".toCharArray()};
-        assertArrayEquals(compare, loadedMap);
-    }
 }
