@@ -21,13 +21,17 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import luolastopeli.logiikka.Area;
-import luolastopeli.logiikka.Player;
+import luolastopeli.logiikka.entities.EntityManager;
+import luolastopeli.logiikka.entities.Player;
 
 /**
  *
  * @author hexparvi
  */
 public class Screen extends Application {
+
+    public boolean playerTurn;
+    public boolean playerMoved;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -39,19 +43,35 @@ public class Screen extends Application {
         primaryStage.setScene(scene);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        Player testplayer = new Player(2, 2, new Image("file:./src/main/resources/images/playerplaceholder.png"));
         File mapFile = new File("./src/main/resources/maps/testroom.txt");
         Scanner areasrc = new Scanner(mapFile);
         Area testmap = new Area(areasrc);
-
+        Player testplayer = testmap.getPlayer();
+        EntityManager testmanager = new EntityManager(testmap.getEnemies(), testplayer, testmap);
+        ArrayList<String> input = new ArrayList<>();
+        playerMoved = false;
+        
+//        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent e) {
+//                String keycode = e.getCode().toString();
+//                input.add(keycode);
+//            }
+//        });
+        playerTurn = true;
+        
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
-                String keycode = e.getCode().toString();
-                // works, but doesn't account for simultaneous keypresses
-                testplayer.move(keycode, 1, testmap);
+                if (playerTurn) {
+                    testplayer.move(e.getCode().toString(), 1, testmap);
+                    playerTurn = false;
+                }
+                
             }
         });
+
+        
 
         //Main game loop
         new AnimationTimer() {
@@ -59,12 +79,20 @@ public class Screen extends Application {
             public void handle(long currentNanoTime) {
                 gc.clearRect(0, 0, 500, 500);
                 testmap.draw(gc);
-                testplayer.draw(gc);
-
+                if (!playerTurn) {
+                    testmanager.updateEntities();
+                    playerTurn = true;
+                }
+                testmanager.drawEntities(gc);
+                testmanager.drawEntity(testplayer, gc);
             }
         }.start();
 
         primaryStage.show();
+    }
+    
+    public void playTurn() {
+        
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {

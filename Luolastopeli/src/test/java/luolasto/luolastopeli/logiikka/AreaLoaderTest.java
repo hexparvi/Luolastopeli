@@ -52,13 +52,13 @@ public class AreaLoaderTest {
     public void arraySizeIsCorrect() {
     
     }
-    
-    @Test
-    public void loadWorks() {
-        AreaLoader loader = new AreaLoader(new Scanner("**\n.."));
-        loader.load();
-        char[][] loadedMap = loader.getMap();
-        char[][] compare = new char[][]{"**".toCharArray(), "..".toCharArray()};
-        assertArrayEquals(compare, loadedMap);
-    }
+//    
+//    @Test
+//    public void loadWorks() {
+//        AreaLoader loader = new AreaLoader(new Scanner("**\n.."));
+//        loader.load();
+//        char[][] loadedMap = loader.getMap();
+//        char[][] compare = new char[][]{"**".toCharArray(), "..".toCharArray()};
+//        assertArrayEquals(compare, loadedMap);
+//    }
 }

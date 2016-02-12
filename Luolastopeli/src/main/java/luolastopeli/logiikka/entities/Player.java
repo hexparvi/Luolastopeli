@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package luolastopeli.logiikka;
+package luolastopeli.logiikka.entities;
 
 import javafx.scene.image.Image;
 
@@ -14,8 +14,8 @@ import javafx.scene.image.Image;
  */
 public class Player extends Actor {
     // current map as attribute? maybe for actor class?
-    
-    public Player(int initialX, int initialY, Image img) {
-        super(initialX, initialY, img);
+
+    public Player(int initialX, int initialY, String imgPath) {
+        super(initialX, initialY, imgPath);
     }
 }

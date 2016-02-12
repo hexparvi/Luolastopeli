@@ -5,6 +5,8 @@
  */
 package luolastopeli.logiikka;
 
+import luolastopeli.logiikka.entities.Enemy;
+import luolastopeli.logiikka.entities.Player;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,46 +19,40 @@ import javafx.scene.image.Image;
  */
 public class Area {
 
-    private char[][] map;
-    private int width;
-    private int height;
-    private Image wall;
-    private Image floor;
-    private boolean playerIsHere;//maybe?
-    private ArrayList<Actor> enemies;
-    private ArrayList<Sprite> treasures;
-    private Player player;//nullpointerexception potential?
-
+    private Tile[][] tileMap;
+    private ArrayList<Enemy> enemies;
+    //private ArrayList<Sprite> treasures;
+    
     public Area(Scanner src) throws FileNotFoundException {
-        wall = new Image("file:./src/main/resources/images/wallplaceholder.png");
-        floor = new Image("file:./src/main/resources/images/floorplaceholder.png");
+//        wallPath = "file:./src/main/resources/images/wallplaceholder.png";
+//        floorPath = "file:./src/main/resources/images/floorplaceholder.png";
         AreaLoader loader = new AreaLoader(src);
         loader.load();
-        map = loader.getMap();
-        width = 12;
-        height = 12;
+        tileMap = loader.getMap();
+        enemies = loader.getEnemies();
+        //treasures = loader.getTreasures();
     }
 
     public void draw(GraphicsContext gc) {
-        for (int i = 0; i < 11; i++) {
-            for (int j = 0; j < 11; j++) {
-                if (map[i][j] == '*') {
-                    gc.drawImage(wall, i * 32, j * 32); // store tilesize, sprites etc. where?
-                } else {
-                    gc.drawImage(floor, i * 32, j * 32);
-                }
+        for (int i = 0; i < tileMap.length; i++) {
+            for (int j = 0; j < tileMap[0].length; j++) {
+                tileMap[i][j].draw(gc);
             }
         }
     }
     
     public boolean isWalkable(int x, int y) {
-        if (x >= width || y >= height) return false;
+        if (x >= tileMap.length || y >= tileMap[0].length) return false;
         if (x < 0 || y < 0) return false;
-        if (map[x][y] == '.') return true;//walls, floors enemies are not walkable
+        if (tileMap[x][y].getType().equals("FLOOR") && !tileMap[x][y].hasEntity()) return true;
         return false;
     }
     
-    public Player getPlayer() {
-        return player;
+    public boolean containsEnemy(int x, int y) {
+        return tileMap[x][y].hasEntity();
+    }
+    
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
     }
 }

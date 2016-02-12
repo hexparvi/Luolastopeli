@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package luolastopeli.logiikka;
+package luolastopeli.logiikka.entities;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import luolastopeli.logiikka.Area;
 
 /**
  *
  * @author hexparvi
  */
-abstract class Actor extends Sprite {
+abstract public class Actor extends Sprite {
     //needs update() method? to encapsulate
     private int speed;// number of steps taken in one turn
     private int hp;
     private int dmg;
 
-    protected Actor(int initialX, int initialY, Image img) {
-        super(initialX, initialY, img);
+    protected Actor(int initialX, int initialY, String imgPath) {
+        super(initialX, initialY, imgPath);
     }
 
     public void move(String direction, int steps, Area map) {
@@ -46,6 +47,10 @@ abstract class Actor extends Sprite {
                 }
                 break;
         }
+        
+        if (map.containsEnemy(x, y)) {
+            attack();
+        }
     }
 
     public int getHP() {
@@ -64,7 +69,7 @@ abstract class Actor extends Sprite {
         }
     }
     
-    public void attack(Actor target) {// where to check when to attack? main loop?
+    public void attack(Actor target) {
         target.takeDmg(this.dmg);
     }
 

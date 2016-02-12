@@ -28,6 +28,7 @@ public class AreaTest {
     
     @BeforeClass
     public static void setUpClass() {
+        
     }
     
     @AfterClass
