@@ -41,11 +41,26 @@ public class Tile {
         return entity;
     }
     
+    public void removeEntity() {
+        entity = null;
+    }
+    
     public boolean hasEntity() {
         return entity != null;
     }
     
     public void draw(GraphicsContext gc) {
+        switch (type) {
+            case "FLOOR":
+                gc.drawImage(TestSpriteEnum.FLOOR_SPRITE.getImage(), x * 32, y * 32);
+                break;
+            case "WALL":
+                gc.drawImage(TestSpriteEnum.WALL_SPRITE.getImage(), x * 32, y * 32);
+                break;
+        }
         
+        if (hasEntity()) {
+            gc.drawImage(TestSpriteEnum.ENEMY_SPRITE.getImage(), x * 32, y * 32);
+        }
     }
 }

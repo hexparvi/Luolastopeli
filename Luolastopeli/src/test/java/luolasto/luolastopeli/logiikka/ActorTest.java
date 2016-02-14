@@ -38,9 +38,9 @@ public class ActorTest {
 
     @Before
     public void setUp() throws FileNotFoundException {
-        Scanner scanner = new Scanner(".P.\n.*.\n...\n...");
-        area = new Area(scanner);
-        actor = area.getPlayer();
+//        Scanner scanner = new Scanner(".P.\n.*.\n...\n...");
+//        area = new Area(scanner);
+//        actor = area.getPlayer();
     }
 
     @After

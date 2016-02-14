@@ -13,32 +13,26 @@ import luolastopeli.logiikka.Area;
  *
  * @author hexparvi
  */
-public class Enemy extends Actor {
+public class Enemy extends Sprite {
     // how to multiple enemy types?
     public Enemy(int initialX, int initialY, String imgPath) {
         super(initialX, initialY, imgPath);
     }
     
-    public void moveTowardPlayer(Player player, Area map) {
-        //System.out.println("enemy moved");
-        int targetX = player.getX();
-        int targetY = player.getY();
-        if (targetX > x) {
-            move("RIGHT", 1, map);
-            
-        } else if (targetX < x) {
-            move("LEFT", 1, map);
-            
-        } else if (targetY > y) {
-            move("DOWN", 1, map);
-            
-        } else if (targetY < y) {
-            move("UP", 1, map);
-        }
-        if (x == targetX && y == targetY) {
-            attack(player);
-        }
+    @Override
+    public void act() {
     }
     
-    
+    public String findDirection(int playerX, int playerY) {
+        if (x > playerX) {
+            return "LEFT";
+        } else if (x < playerX) {
+            return "RIGHT";
+        } else if (y > playerY) {
+            return "UP";
+        } else if (y < playerY) {
+            return "DOWN";
+        }
+        return "";
+    }
 }

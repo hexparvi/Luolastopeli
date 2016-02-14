@@ -5,9 +5,6 @@
  */
 package luolastopeli.logiikka;
 
-import luolastopeli.logiikka.entities.Enemy;
-//import luolastopeli.logiikka.entities.Sprite;
-import luolastopeli.logiikka.entities.Player;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,6 +13,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
+import luolastopeli.logiikka.entities.Enemy;
+import luolastopeli.logiikka.entities.Player;
+import luolastopeli.logiikka.entities.Sprite;
 
 /**
  *
@@ -29,15 +29,17 @@ public class AreaLoader {
     private Tile[][] map;
     private Scanner scanner;
 
-    public AreaLoader(Scanner scan) {
-        scanner = scan;
-        map = new Tile[scanner.nextInt()][scanner.nextInt()];
-        scanner.nextLine(); // consumes leftover newline character
-        enemies = new ArrayList<Enemy>();
-        //objects = new ArrayList<Sprite>();
+    public AreaLoader() {
+    }
+    
+    public void giveMapFile(File mapfile) throws FileNotFoundException {
+        scanner = new Scanner(mapfile);
     }
 
     public void load() {
+        map = new Tile[scanner.nextInt()][scanner.nextInt()];
+        scanner.nextLine(); // consumes leftover newline character
+        enemies = new ArrayList<Enemy>();
         int i = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

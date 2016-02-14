@@ -24,7 +24,6 @@ abstract public class Actor extends Sprite {
     }
 
     public void move(String direction, int steps, Area map) {
-        // recursive check for multiple steps?
         switch (direction) {
             case "UP":
                 if (map.isWalkable(x, y - steps)) {
@@ -46,10 +45,6 @@ abstract public class Actor extends Sprite {
                     x += steps;
                 }
                 break;
-        }
-        
-        if (map.containsEnemy(x, y)) {
-            attack();
         }
     }
 

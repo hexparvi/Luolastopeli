@@ -7,6 +7,7 @@ package luolastopeli.logiikka.entities;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import luolastopeli.logiikka.Area;
 
 /**
  *
@@ -15,22 +16,46 @@ import javafx.scene.image.Image;
 abstract public class Sprite {
     int x;
     int y;
-    String imagePath;
-    //Area area;
+    int speed;
+    String type;
 
     protected Sprite(int initialX, int initialY, String imgPath) {
-        imagePath = imgPath;
+        type = imgPath;
         x = initialX;
         y = initialY;
+        speed = 1;
     }
-
-//    public void draw(GraphicsContext gc) {
-//        gc.drawImage(img, x * 32, y * 32);
-//    }
     
-//    public void setArea(Area where) {
-//        area = where;
-//    }
+    public void act() {
+        
+    }
+    
+    public void move(String direction, Area map) {
+        map.removeEntityFromPos(x, y);
+        switch (direction) {
+            case "UP":
+                if (map.isWalkable(x, y - speed)) {
+                    y = y - speed;
+                }
+                break;
+            case "DOWN":
+                if (map.isWalkable(x, y + speed)) {
+                    y = y + speed;
+                }
+                break;
+            case "LEFT":
+                if (map.isWalkable(x - speed, y)) {
+                    x = x - speed;
+                }
+                break;
+            case "RIGHT":
+                if (map.isWalkable(x + speed, y)) {
+                    x = x + speed;
+                }
+                break;
+        }
+        map.setEntityToPos(x, y, this);
+    }
     
     public int getX() {
         return x;
@@ -40,7 +65,15 @@ abstract public class Sprite {
         return y;
     }
     
+    public void setX(int newX) {
+        x = newX;
+    }
+    
+    public void setY(int newY) {
+        y = newY;
+    }
+    
     public String getImagePath() {
-        return imagePath;
+        return type;
     }
 }

@@ -5,32 +5,26 @@
  */
 package luolastopeli.logiikka;
 
-import luolastopeli.logiikka.entities.Enemy;
-import luolastopeli.logiikka.entities.Player;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import luolastopeli.logiikka.entities.Enemy;
+import luolastopeli.logiikka.entities.Player;
+import luolastopeli.logiikka.entities.Sprite;
 
 /**
  *
  * @author hexparvi
  */
 public class Area {
-
     private Tile[][] tileMap;
     private ArrayList<Enemy> enemies;
-    //private ArrayList<Sprite> treasures;
     
-    public Area(Scanner src) throws FileNotFoundException {
-//        wallPath = "file:./src/main/resources/images/wallplaceholder.png";
-//        floorPath = "file:./src/main/resources/images/floorplaceholder.png";
-        AreaLoader loader = new AreaLoader(src);
-        loader.load();
-        tileMap = loader.getMap();
-        enemies = loader.getEnemies();
-        //treasures = loader.getTreasures();
+    public Area(Tile[][] map, ArrayList<Enemy> entities) {
+        tileMap = map;
+        enemies = entities;
     }
 
     public void draw(GraphicsContext gc) {
@@ -48,8 +42,20 @@ public class Area {
         return false;
     }
     
-    public boolean containsEnemy(int x, int y) {
+    public boolean containsEntity(int x, int y) {
         return tileMap[x][y].hasEntity();
+    }
+    
+    public Sprite getEntityFromPos(int x, int y) {
+        return tileMap[x][y].getEntity();
+    }
+    
+    public void removeEntityFromPos(int x, int y) {
+        tileMap[x][y].removeEntity();
+    }
+    
+    public void setEntityToPos(int x, int y, Sprite entity) {
+        tileMap[x][y].setEntity(entity);
     }
     
     public ArrayList<Enemy> getEnemies() {
