@@ -13,10 +13,13 @@ import luolastopeli.logiikka.Area;
  *
  * @author hexparvi
  */
-public class Enemy extends Sprite {
+public class Enemy extends Actor {
     // how to multiple enemy types?
     public Enemy(int initialX, int initialY, String imgPath) {
         super(initialX, initialY, imgPath);
+        super.setHP(5);
+        super.setDmg(1);
+        super.setType("ENEMY");
     }
     
     @Override

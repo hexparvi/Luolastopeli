@@ -73,6 +73,14 @@ abstract public class Sprite {
         y = newY;
     }
     
+    public void setType(String newType) {
+        type = newType;
+    }
+    
+    public String getType() {
+        return type;
+    }
+    
     public String getImagePath() {
         return type;
     }

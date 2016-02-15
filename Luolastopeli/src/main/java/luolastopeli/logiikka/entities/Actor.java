@@ -14,7 +14,7 @@ import luolastopeli.logiikka.Area;
  * @author hexparvi
  */
 abstract public class Actor extends Sprite {
-    //needs update() method? to encapsulate
+
     private int speed;// number of steps taken in one turn
     private int hp;
     private int dmg;
@@ -23,49 +23,53 @@ abstract public class Actor extends Sprite {
         super(initialX, initialY, imgPath);
     }
 
-    public void move(String direction, int steps, Area map) {
-        switch (direction) {
-            case "UP":
-                if (map.isWalkable(x, y - steps)) {
-                    y -= steps;
-                }
-                break;
-            case "DOWN":
-                if (map.isWalkable(x, y + steps)) {
-                    y += steps;
-                }
-                break;
-            case "LEFT":
-                if (map.isWalkable(x - steps, y)) {
-                    x -= steps;
-                }
-                break;
-            case "RIGHT":
-                if (map.isWalkable(x + steps, y)) {
-                    x += steps;
-                }
-                break;
-        }
-    }
-
     public int getHP() {
         return hp;
+    }
+    
+    public void setHP(int newHp) {
+        hp = newHp;
+    }
+    
+    public void setDmg(int newDmg) {
+        dmg = newDmg;
     }
 
     public int getDmg() {
         return dmg;
     }
 
-    public void takeDmg(int dmgTaken) {
+    public boolean takeDmg(int dmgTaken) {
         if (dmgTaken > hp) {
             hp = 0;
+            System.out.println("took damage and died");
+            return true;
         } else {
             hp -= dmgTaken;
+            System.out.println("took damage, but survived");
+            return false;
         }
     }
+
+    public boolean attack(Actor target) {
+        System.out.println("attacked target: " + target.getType());
+        return target.takeDmg(this.dmg);
+    }
+
+    public boolean isNextTo(Sprite entity) {
+        int entityX = entity.getX();
+        int entityY = entity.getY();
+        if (entityX == x && (entityY == y - 1 || entityY == y + 1)) return true;
+        if (entityY == y && (entityX == x - 1 || entityX == x + 1)) return true;
+        return false;
+    }
     
-    public void attack(Actor target) {
-        target.takeDmg(this.dmg);
+    public void interact(Sprite target) {
+        String targetType = target.getType();
+        if (targetType.equals("ENEMY")) {
+            attack((Enemy) target);
+            System.out.println("Player attacked enemy!");
+        }
     }
 
 }

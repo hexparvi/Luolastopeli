@@ -36,7 +36,7 @@ public class Game {
     }
 
     public void update(String playerInput) {
-        entityManager.updatePlayer(player);
+        entityManager.updatePlayer(player, currentArea, playerInput);
         entityManager.updateEnemies(currentArea.getEnemies(), currentArea, player);
     }
 
