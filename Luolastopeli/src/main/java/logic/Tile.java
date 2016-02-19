@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package luolastopeli.logiikka;
+package logic;
 
 import javafx.scene.canvas.GraphicsContext;
-import luolastopeli.logiikka.entities.Sprite;
+import entities.Sprite;
 
 /**
  *

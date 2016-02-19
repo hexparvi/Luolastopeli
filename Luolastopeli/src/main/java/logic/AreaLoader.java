@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package luolastopeli.logiikka;
+package logic;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,9 +13,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.image.Image;
-import luolastopeli.logiikka.entities.Enemy;
-import luolastopeli.logiikka.entities.Player;
-import luolastopeli.logiikka.entities.Sprite;
+import entities.Enemy;
+import entities.Player;
+import entities.Sprite;
 
 /**
  *

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package luolasto.luolastopeli.logiikka;
+package entities;
 
-import luolastopeli.logiikka.entities.EntityManager;
+import entities.EntityManager;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;

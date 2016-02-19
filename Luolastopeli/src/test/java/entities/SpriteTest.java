@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package luolasto.luolastopeli.logiikka;
+package entities;
 
 import java.util.ArrayList;
-import luolastopeli.logiikka.Area;
-import luolastopeli.logiikka.Tile;
-import luolastopeli.logiikka.entities.Enemy;
-import luolastopeli.logiikka.entities.Player;
+import logic.Area;
+import logic.Tile;
+import entities.Enemy;
+import entities.Player;
+import logic.Area;
+import logic.Tile;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;

@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package luolasto.luolastopeli.logiikka;
+
+package logic;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import luolastopeli.logiikka.Area;
-import luolastopeli.logiikka.Tile;
-import luolastopeli.logiikka.entities.Enemy;
-import luolastopeli.logiikka.entities.Player;
+import logic.Area;
+import logic.Tile;
+import entities.Enemy;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -23,40 +23,44 @@ import org.junit.Test;
  *
  * @author hexparvi
  */
-public class ActorTest {
-
-    Player actor;
-
-    public ActorTest() {
+public class AreaTest {
+    Area area;
+    
+    public AreaTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
+        
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() throws FileNotFoundException {
-        actor = new Player(0, 0, "");
-        actor.setHP(10);
+        Tile[][] tilemap = {{new Tile(0, 0, "FLOOR"), new Tile(0, 1, "FLOOR")},
+        {new Tile(1, 0, "WALL"), new Tile(1, 1, "WALL")}};
+        area = new Area(tilemap, new ArrayList<Enemy>());
     }
-
+    
     @After
     public void tearDown() {
     }
-
+    
     @Test
-    public void hpReducedWhenDmgTaken() {
-        actor.takeDmg(5);
-        assertEquals(5, actor.getHP());
+    public void isWalkableReturnsTrueOnFloors() {
+        assertTrue(area.isWalkable(0, 0));
     }
     
     @Test
-    public void hpDoesntGoBelowZero() {
-        actor.takeDmg(11);
-        assertEquals(0, actor.getHP());
+    public void isWalkableReturnsFalseOnWalls() {
+        assertFalse(area.isWalkable(1, 1));
+    }
+    
+    @Test
+    public void isWalkableReturnsFalseOutsideOfBoundaries() {
+        assertFalse(area.isWalkable(-1, -1));
     }
 }

@@ -1,4 +1,4 @@
-package luolasto.luolastopeli.logiikka;
+package logic;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,7 +8,7 @@ package luolasto.luolastopeli.logiikka;
 
 
 
-import luolastopeli.logiikka.AreaLoader;
+import logic.AreaLoader;
 import java.util.Scanner;
 import org.junit.After;
 import org.junit.AfterClass;

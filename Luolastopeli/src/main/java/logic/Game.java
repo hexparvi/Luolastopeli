@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package luolastopeli.logiikka;
+package logic;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import javafx.scene.canvas.GraphicsContext;
-import luolastopeli.logiikka.entities.EntityManager;
-import luolastopeli.logiikka.entities.Player;
+import entities.EntityManager;
+import entities.Player;
 import status.StatusDisplay;
 
 /**

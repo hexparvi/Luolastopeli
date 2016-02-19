@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import luolastopeli.logiikka.entities.Actor;
-import luolastopeli.logiikka.entities.Player;
+import entities.Actor;
+import entities.Player;
 
 /**
  *

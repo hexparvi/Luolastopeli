@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package luolastopeli.kayttoliittyma;
+package gui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,10 +21,10 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import luolastopeli.logiikka.Area;
-import luolastopeli.logiikka.Game;
-import luolastopeli.logiikka.entities.EntityManager;
-import luolastopeli.logiikka.entities.Player;
+import logic.Area;
+import logic.Game;
+import entities.EntityManager;
+import entities.Player;
 
 /**
  *

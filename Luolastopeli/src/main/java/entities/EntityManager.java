@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package luolastopeli.logiikka.entities;
+package entities;
 
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import luolastopeli.logiikka.Area;
-import luolastopeli.logiikka.Game;
+import logic.Area;
+import logic.Game;
 
 /**
  *

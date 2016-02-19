@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package luolastopeli.logiikka;
+package logic;
 
 import javafx.scene.image.Image;
 
