@@ -30,6 +30,11 @@ abstract public class Sprite {
         
     }
     
+    /**
+     * Moves sprite in area.
+     * @param direction direction of movement
+     * @param map area in which sprite is located
+     */
     public void move(String direction, Area map) {
         map.removeEntityFromPos(x, y);
         switch (direction) {

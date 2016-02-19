@@ -7,9 +7,9 @@
 package logic;
 
 /**
- *
+ * Randomly generates a new Area.
  * @author hexparvi
  */
 public class AreaGenerator {
-    
+    //todo
 }

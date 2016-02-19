@@ -9,7 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import entities.Sprite;
 
 /**
- *
+ * Container for tile type and an entity.
  * @author hexparvi
  */
 public class Tile {

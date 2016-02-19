@@ -15,7 +15,7 @@ import logic.Area;
  */
 abstract public class Actor extends Sprite {
 
-    private int speed;// number of steps taken in one turn
+    private int speed; // number of steps taken in one turn
     private int hp;
     private int dmg;
 
@@ -26,11 +26,11 @@ abstract public class Actor extends Sprite {
     public int getHP() {
         return hp;
     }
-    
+
     public void setHP(int newHp) {
         hp = newHp;
     }
-    
+
     public void setDmg(int newDmg) {
         dmg = newDmg;
     }
@@ -38,7 +38,14 @@ abstract public class Actor extends Sprite {
     public int getDmg() {
         return dmg;
     }
-
+    
+    /**
+     * Reduces caller HP or sets it to zero if damageTaken is greater than caller HP.
+     * 
+     * @param dmgTaken damage
+     * 
+     * @return true if caller died, false otherwise
+     */
     public boolean takeDmg(int dmgTaken) {
         if (dmgTaken > hp) {
             hp = 0;
@@ -56,8 +63,12 @@ abstract public class Actor extends Sprite {
     public boolean isNextTo(Sprite entity) {
         int entityX = entity.getX();
         int entityY = entity.getY();
-        if (entityX == x && (entityY == y - 1 || entityY == y + 1)) return true;
-        if (entityY == y && (entityX == x - 1 || entityX == x + 1)) return true;
+        if (entityX == x && (entityY == y - 1 || entityY == y + 1)) {
+            return true;
+        }
+        if (entityY == y && (entityX == x - 1 || entityX == x + 1)) {
+            return true;
+        }
         return false;
     }
 

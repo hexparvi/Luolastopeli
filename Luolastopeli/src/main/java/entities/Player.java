@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
  * @author hexparvi
  */
 public class Player extends Actor {
-    // current map as attribute? maybe for actor class?
 
     public Player(int initialX, int initialY, String imgPath) {
         super(initialX, initialY, imgPath);

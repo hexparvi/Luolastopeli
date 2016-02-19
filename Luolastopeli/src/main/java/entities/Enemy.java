@@ -14,7 +14,6 @@ import logic.Area;
  * @author hexparvi
  */
 public class Enemy extends Actor {
-    // how to multiple enemy types?
     public Enemy(int initialX, int initialY, String imgPath) {
         super(initialX, initialY, imgPath);
         super.setHP(5);
@@ -26,6 +25,13 @@ public class Enemy extends Actor {
     public void act() {
     }
     
+    /**
+     * Selects direction based on target coordinates.
+     * 
+     * @param playerX x-coordinate of target player
+     * @param playerY y-coordinate of target player
+     * @return direction chosen as String
+     */
     public String findDirection(int playerX, int playerY) {
         if (x > playerX) {
             return "LEFT";

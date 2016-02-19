@@ -24,6 +24,9 @@ public class EntityManager {
     public EntityManager() {
     }
 
+    /**
+     * For each enemy, handles movement and attacking.
+     */
     public void updateEnemies() {
         for (Enemy enemy : enemies) {
             String direction = enemy.findDirection(player.getX(), player.getY());
@@ -36,6 +39,10 @@ public class EntityManager {
         }
     }
 
+    /**
+     * Handles player movement and attacking.
+     * @param input player input as String
+     */
     public void updatePlayer(String input) {
         player.move(input, area);
         ArrayList<Sprite> neighbors = getNeighbors(player.getX(), player.getY());
@@ -55,7 +62,13 @@ public class EntityManager {
 
     }
     
-    private ArrayList<Sprite> getNeighbors(int x, int y) { //huom. copypasten poisto!
+    /**
+     * Gets entities located in neighboring tiles.
+     * @param x x-coordinate of the tile
+     * @param y y-coordinate of the tile
+     * @return list of neighboring Sprites
+     */
+    private ArrayList<Sprite> getNeighbors(int x, int y) {
         ArrayList<Sprite> neighbors = new ArrayList<>();
         if (area.containsEntity(x - 1, y)) {
             neighbors.add(area.getEntityFromPos(x - 1, y));

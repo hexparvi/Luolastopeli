@@ -11,5 +11,5 @@ package logic;
  * @author hexparvi
  */
 public class Treasure {
-    
+    //todo
 }

@@ -13,7 +13,7 @@ import entities.Actor;
 import entities.Player;
 
 /**
- *
+ * HUD for displaying current player HP and recent entity actions.
  * @author hexparvi
  */
 public class StatusDisplay {
@@ -48,7 +48,12 @@ public class StatusDisplay {
     public void update(Player player) {
         currentHP = player.getHP();
     }
-
+    
+    /**
+     * Creates and adds an action message to messages list.
+     * @param actor performer of action
+     * @param target target of action 
+     */
     public void statusMessage(Actor actor, Actor target) {
         messages.add(actor.getType() + " hits " + target.getType() + " for " + actor.getDmg() + " dmg!");
         if (messages.size() > 5) {

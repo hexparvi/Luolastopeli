@@ -18,7 +18,7 @@ import entities.Player;
 import entities.Sprite;
 
 /**
- *
+ * Loads Tiles and Entities from a .txt file.
  * @author hexparvi
  */
 public class AreaLoader {
@@ -36,6 +36,9 @@ public class AreaLoader {
         scanner = new Scanner(mapfile);
     }
 
+    /**
+     * Fills map-array with Tiles.
+     */
     public void load() {
         map = new Tile[scanner.nextInt()][scanner.nextInt()];
         scanner.nextLine(); // consumes leftover newline character
@@ -49,7 +52,13 @@ public class AreaLoader {
             i++;
         }
     }
-
+    
+    /**
+     * Checks tile content.
+     * @param c char representation of tile content
+     * @param x x-coordinate of tile
+     * @param y y-coordinate of tile
+     */
     private void checkTileContent(char c, int x, int y) {
         if (c == 'P') {
             player = new Player(x, y, TestSpriteEnum.PLAYER_SPRITE.getPath());
@@ -78,9 +87,5 @@ public class AreaLoader {
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
-
-//    public ArrayList<Sprite> getTreasures() {
-//        return objects;
-//    }
 
 }
