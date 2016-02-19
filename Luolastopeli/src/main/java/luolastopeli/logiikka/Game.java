@@ -11,6 +11,7 @@ import java.util.Scanner;
 import javafx.scene.canvas.GraphicsContext;
 import luolastopeli.logiikka.entities.EntityManager;
 import luolastopeli.logiikka.entities.Player;
+import status.StatusDisplay;
 
 /**
  *
@@ -21,10 +22,12 @@ public class Game {
     private Area currentArea;
     private AreaLoader areaLoader;
     private EntityManager entityManager;
+    private StatusDisplay display;
     
     public Game() {
         areaLoader = new AreaLoader();
         entityManager = new EntityManager();
+        display = new StatusDisplay();
     }
 
     public void init() throws FileNotFoundException {
@@ -33,16 +36,51 @@ public class Game {
         areaLoader.load();
         currentArea = new Area(areaLoader.getMap(), areaLoader.getEnemies());
         player = areaLoader.getPlayer();
+        entityManager.setGame(this);
+        changeArea();
+    }
+    
+    public void changeArea() {
+        entityManager.setArea(currentArea);
+        entityManager.setEnemies(currentArea.getEnemies());
+        entityManager.setPlayer(player);
     }
 
     public void update(String playerInput) {
-        entityManager.updatePlayer(player, currentArea, playerInput);
-        entityManager.updateEnemies(currentArea.getEnemies(), currentArea, player);
+        entityManager.updatePlayer(playerInput);
+        entityManager.updateEnemies();
     }
 
-    public void draw(GraphicsContext gc) {
+    public void drawGame(GraphicsContext gc) {
         gc.clearRect(0, 0, 500, 500);
         currentArea.draw(gc);
+    }
+    
+    public void drawHUD(GraphicsContext gc) {
+        gc.clearRect(0, 0, 500, 500);
+        display.draw(gc);
+    }
+    
+    public void gameOver() {
+        //display game over-screen
+    }
+    
+    public Area getArea() {
+        return currentArea;
+    }
+    
+    public Player getPlayer() {
+        return player;
+    }
+    
+    public StatusDisplay getStatus() {
+        return display;
+    }
+    
+    public boolean isOver() {
+        if (player.getHP() == 0) return true;
+        if (currentArea.getEnemies().size() == 0) return true;
+        return false;
     }
 
 }

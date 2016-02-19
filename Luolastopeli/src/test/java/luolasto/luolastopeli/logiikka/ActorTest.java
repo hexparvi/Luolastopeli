@@ -6,8 +6,11 @@
 package luolasto.luolastopeli.logiikka;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import luolastopeli.logiikka.Area;
+import luolastopeli.logiikka.Tile;
+import luolastopeli.logiikka.entities.Enemy;
 import luolastopeli.logiikka.entities.Player;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,7 +26,6 @@ import org.junit.Test;
 public class ActorTest {
 
     Player actor;
-    Area area;
 
     public ActorTest() {
     }
@@ -38,58 +40,23 @@ public class ActorTest {
 
     @Before
     public void setUp() throws FileNotFoundException {
-//        Scanner scanner = new Scanner(".P.\n.*.\n...\n...");
-//        area = new Area(scanner);
-//        actor = area.getPlayer();
+        actor = new Player(0, 0, "");
+        actor.setHP(10);
     }
 
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-//    @Test
-//    public void movingOneStepChangesXYCorrectly() {
-//        actor.move("RIGHT", 1, area);
-//        assertEquals(2, actor.getX());
-//        assertEquals(0, actor.getY());
-//    }
-//
-//    @Test
-//    public void movingMultipleStepsChangesXYCorrectly() {
-//        actor.move("LEFT", 1, area);
-//        actor.move("DOWN", 2, area);
-//        assertEquals(0, actor.getX());
-//        assertEquals(2, actor.getY());
-//    }
-//    
-//    @Test
-//    public void actorCantTeleportThroughWalls() {
-//        actor.move("DOWN", 2, area);
-//        assertEquals(1, actor.getX());
-//        assertEquals(0, actor.getY());
-//    }
-//    
-//    @Test
-//    public void cantMoveOnTopOfNonWalkableTiles() {
-//        actor.move("DOWN", 1, area);
-//        assertEquals(1, actor.getX());
-//        assertEquals(0, actor.getY());
-//    }
-//    
-//    @Test
-//    public void hpReducedWhenDmgTaken() {
-//        actor.takeDmg(5);
-//        assertEquals(5, actor.getHP());
-//    }
-//    
-//    @Test
-//    public void hpDoesntGoBelowZero() {
-//        actor.takeDmg(11);
-//        assertEquals(0, actor.getHP());
-//    }
+    @Test
+    public void hpReducedWhenDmgTaken() {
+        actor.takeDmg(5);
+        assertEquals(5, actor.getHP());
+    }
+    
+    @Test
+    public void hpDoesntGoBelowZero() {
+        actor.takeDmg(11);
+        assertEquals(0, actor.getHP());
+    }
 }

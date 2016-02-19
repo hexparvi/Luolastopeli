@@ -19,6 +19,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import luolastopeli.logiikka.Area;
 import luolastopeli.logiikka.Game;
@@ -38,11 +39,16 @@ public class Screen extends Application {
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
         Scene scene = new Scene(root);
-        Canvas canvas = new Canvas(500, 500);
+        Canvas gameCanvas = new Canvas(500, 500);
+        Canvas hudCanvas = new Canvas(500, 500);
 
-        root.getChildren().add(canvas);
+        root.getChildren().add(gameCanvas);
+        root.getChildren().add(hudCanvas);
         primaryStage.setScene(scene);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        GraphicsContext gameGC = gameCanvas.getGraphicsContext2D();
+        GraphicsContext hudGC = hudCanvas.getGraphicsContext2D();
+        
+        gameGC.setFont(Font.getDefault());
 
         Game game = new Game();
         game.init();
@@ -58,8 +64,11 @@ public class Screen extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
-                game.draw(gc);
-                if (playerMoved) {
+                game.drawGame(gameGC);
+                game.drawHUD(hudGC);
+                if (game.isOver()) {
+                    game.gameOver();
+                } else if (playerMoved) {
                     game.update(input);
                     playerMoved = false;
                 }

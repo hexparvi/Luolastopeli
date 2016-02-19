@@ -38,7 +38,7 @@ public class Area {
     public boolean isWalkable(int x, int y) {
         if (x >= tileMap.length || y >= tileMap[0].length) return false;
         if (x < 0 || y < 0) return false;
-        if (tileMap[x][y].getType().equals("FLOOR")  && !tileMap[x][y].hasEntity()) return true; //  && !tileMap[x][y].hasEntity()
+        if (tileMap[x][y].getType().equals("FLOOR")  && !tileMap[x][y].hasEntity()) return true;
         return false;
     }
     

@@ -9,42 +9,53 @@ import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import luolastopeli.logiikka.Area;
+import luolastopeli.logiikka.Game;
 
 /**
  *
  * @author hexparvi
  */
 public class EntityManager {
+    private Area area;
+    private ArrayList<Enemy> enemies;
+    private Player player;
+    private Game game;
 
     public EntityManager() {
     }
 
-    public void updateEnemies(ArrayList<Enemy> enemies, Area area, Player player) {
+    public void updateEnemies() {
         for (Enemy enemy : enemies) {
             String direction = enemy.findDirection(player.getX(), player.getY());
             enemy.move(direction, area);
             if (enemy.isNextTo(player)) {
-                boolean targetDied = enemy.attack(player);
+                enemy.attack(player);
+                game.getStatus().statusMessage(enemy, player);
+                game.getStatus().update(player);
+            }
+        }
+    }
+
+    public void updatePlayer(String input) {
+        player.move(input, area);
+        ArrayList<Sprite> neighbors = getNeighbors(player.getX(), player.getY());
+        for (Sprite neighbor : neighbors) {
+            if (neighbor.getType().equals("ENEMY")) {
+                boolean targetDied = player.attack((Actor) neighbor);
+                game.getStatus().statusMessage(player, (Actor) neighbor); // eww typecasts
                 if (targetDied) {
-                    //game over
+                    area.removeEntityFromPos(neighbor.getX(), neighbor.getY());
+                    enemies.remove(neighbor);
                 }
             }
         }
     }
 
-    public void updatePlayer(Player player, Area area, String input) {
-        player.move(input, area);
-        ArrayList<Sprite> neighbors = getNeighbors(area, player.getX(), player.getY());
-        for (Sprite neighbor : neighbors) {
-            player.interact(neighbor); // only attacks one target per round for some reason?
-        }
-    }
-
-    public void moveEnemies(ArrayList<Enemy> enemy, Area area, Player player) {
+    public void moveEnemies() {
 
     }
     
-    private ArrayList<Sprite> getNeighbors(Area area, int x, int y) {
+    private ArrayList<Sprite> getNeighbors(int x, int y) { //huom. copypasten poisto!
         ArrayList<Sprite> neighbors = new ArrayList<>();
         if (area.containsEntity(x - 1, y)) {
             neighbors.add(area.getEntityFromPos(x - 1, y));
@@ -60,14 +71,24 @@ public class EntityManager {
         }
         return neighbors;
     }
+    
+    public void setGame(Game newGame) {
+        game = newGame;
+    }
+    
+    public void setEnemies(ArrayList<Enemy> newEnemies) {
+        enemies = newEnemies;
+    }
+    
+    public void setArea(Area newArea) {
+        area = newArea;
+    }
+    
+    public void setPlayer(Player newPlayer) {
+        player = newPlayer;
+    }
 
-//    public void drawEntities(GraphicsContext gc) {
-//        for (Enemy entity : entities) {
-//            gc.drawImage(new Image(entity.getImagePath()), entity.getX() * 32, entity.getY() * 32);
-//        }
-//    }
-//    
-//    public void drawEntity(Sprite entity, GraphicsContext gc) {
-//        gc.drawImage(new Image(entity.getImagePath()), entity.getX() * 32, entity.getY() * 32);
-//    }
+    private void sendMessages() {
+        game.getStatus();
+    }
 }

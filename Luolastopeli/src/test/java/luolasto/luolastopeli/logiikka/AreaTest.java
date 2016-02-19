@@ -7,8 +7,11 @@
 package luolasto.luolastopeli.logiikka;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import luolastopeli.logiikka.Area;
+import luolastopeli.logiikka.Tile;
+import luolastopeli.logiikka.entities.Enemy;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -37,32 +40,27 @@ public class AreaTest {
     
     @Before
     public void setUp() throws FileNotFoundException {
-//        Scanner areasrc = new Scanner("..\n**");
-//        area = new Area(areasrc);
+        Tile[][] tilemap = {{new Tile(0, 0, "FLOOR"), new Tile(0, 1, "FLOOR")},
+        {new Tile(1, 0, "WALL"), new Tile(1, 1, "WALL")}};
+        area = new Area(tilemap, new ArrayList<Enemy>());
     }
     
     @After
     public void tearDown() {
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     
-//    @Test
-//    public void isWalkableReturnsTrueOnFloors() {
-//        assertTrue(area.isWalkable(0, 0));
-//    }
-//    
-//    @Test
-//    public void isWalkableReturnsFalseOnWalls() {
-//        assertFalse(area.isWalkable(1, 1));
-//    }
-//    
-//    @Test
-//    public void isWalkableReturnsFalseOutsideOfBoundaries() {
-//        assertFalse(area.isWalkable(-1, -1));
-//    }
+    @Test
+    public void isWalkableReturnsTrueOnFloors() {
+        assertTrue(area.isWalkable(0, 0));
+    }
+    
+    @Test
+    public void isWalkableReturnsFalseOnWalls() {
+        assertFalse(area.isWalkable(1, 1));
+    }
+    
+    @Test
+    public void isWalkableReturnsFalseOutsideOfBoundaries() {
+        assertFalse(area.isWalkable(-1, -1));
+    }
 }
