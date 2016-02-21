@@ -5,10 +5,6 @@
  */
 package entities;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import logic.Area;
-
 /**
  *
  * @author hexparvi
@@ -16,23 +12,32 @@ import logic.Area;
 abstract public class Actor extends Sprite {
 
     private int speed; // number of steps taken in one turn
-    private int hp;
+    private int maxHP;
+    private int currentHP;
     private int dmg;
 
-    protected Actor(int initialX, int initialY, String imgPath) {
-        super(initialX, initialY, imgPath);
+    protected Actor(int x, int y, String imgPath) {
+        super(x, y, imgPath);
+    }
+    
+    public int getMaxHP() {
+        return maxHP;
     }
 
-    public int getHP() {
-        return hp;
+    public int getCurrentHP() {
+        return currentHP;
     }
 
-    public void setHP(int newHp) {
-        hp = newHp;
+    public void setMaxHP(int hp) {
+        maxHP = hp;
+    }
+    
+    public void setCurrentHP(int hp) {
+        currentHP = hp;
     }
 
-    public void setDmg(int newDmg) {
-        dmg = newDmg;
+    public void setDmg(int dmg) {
+        this.dmg = dmg;
     }
 
     public int getDmg() {
@@ -47,11 +52,11 @@ abstract public class Actor extends Sprite {
      * @return true if caller died, false otherwise
      */
     public boolean takeDmg(int dmgTaken) {
-        if (dmgTaken > hp) {
-            hp = 0;
+        if (dmgTaken > currentHP) {
+            currentHP = 0;
             return true;
         } else {
-            hp -= dmgTaken;
+            currentHP -= dmgTaken;
             return false;
         }
     }

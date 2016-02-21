@@ -6,17 +6,16 @@
 
 package entities;
 
-import javafx.scene.image.Image;
-
 /**
  *
  * @author hexparvi
  */
 public class Player extends Actor {
 
-    public Player(int initialX, int initialY, String imgPath) {
-        super(initialX, initialY, imgPath);
-        super.setHP(10);
+    public Player(int x, int y, String imgPath) {
+        super(x, y, imgPath);
+        super.setMaxHP(10);
+        super.setCurrentHP(10);
         super.setDmg(5);
         super.setType("PLAYER");
     }

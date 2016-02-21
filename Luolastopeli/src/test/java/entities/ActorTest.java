@@ -41,7 +41,7 @@ public class ActorTest {
     @Before
     public void setUp() throws FileNotFoundException {
         actor = new Player(0, 0, "");
-        actor.setHP(10);
+        actor.setCurrentHP(10);
     }
 
     @After
@@ -51,12 +51,12 @@ public class ActorTest {
     @Test
     public void hpReducedWhenDmgTaken() {
         actor.takeDmg(5);
-        assertEquals(5, actor.getHP());
+        assertEquals(5, actor.getCurrentHP());
     }
     
     @Test
     public void hpDoesntGoBelowZero() {
         actor.takeDmg(11);
-        assertEquals(0, actor.getHP());
+        assertEquals(0, actor.getCurrentHP());
     }
 }

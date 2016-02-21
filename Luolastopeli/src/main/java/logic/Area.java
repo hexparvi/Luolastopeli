@@ -5,13 +5,9 @@
  */
 package logic;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import entities.Enemy;
-import entities.Player;
 import entities.Sprite;
 
 /**

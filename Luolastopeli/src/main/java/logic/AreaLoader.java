@@ -34,8 +34,11 @@ public class AreaLoader {
 
     /**
      * Fills map-array with Tiles.
+     * @param mapfile
+     * @throws java.io.FileNotFoundException
      */
-    public void load() {
+    public void load(File mapfile) throws FileNotFoundException {
+        scanner = new Scanner(mapfile);
         map = new Tile[scanner.nextInt()][scanner.nextInt()];
         scanner.nextLine(); // consumes leftover newline character
         enemies = new ArrayList<Enemy>();

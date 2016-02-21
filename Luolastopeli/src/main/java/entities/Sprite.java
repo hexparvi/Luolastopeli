@@ -5,8 +5,6 @@
  */
 package entities;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import logic.Area;
 
 /**
@@ -18,11 +16,12 @@ abstract public class Sprite {
     int y;
     int speed;
     String type;
+    String imgPath;
 
-    protected Sprite(int initialX, int initialY, String imgPath) {
-        type = imgPath;
-        x = initialX;
-        y = initialY;
+    protected Sprite(int x, int y, String imgPath) {
+        this.imgPath = imgPath;
+        this.x = x;
+        this.y = y;
         speed = 1;
     }
     
@@ -70,16 +69,16 @@ abstract public class Sprite {
         return y;
     }
     
-    public void setX(int newX) {
-        x = newX;
+    public void setX(int x) {
+        this.x = x;
     }
     
-    public void setY(int newY) {
-        y = newY;
+    public void setY(int y) {
+        this.y = y;
     }
     
-    public void setType(String newType) {
-        type = newType;
+    public void setType(String type) {
+        this.type = type;
     }
     
     public String getType() {
@@ -87,6 +86,6 @@ abstract public class Sprite {
     }
     
     public String getImagePath() {
-        return type;
+        return imgPath;
     }
 }

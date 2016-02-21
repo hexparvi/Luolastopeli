@@ -6,7 +6,6 @@
 package gamestates;
 
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -54,7 +53,7 @@ public class PlayState extends State {
             game.getManager().updateEnemies();
             playerMoved = false;
         }
-        if (game.getPlayer().getHP() == 0) {
+        if (game.getPlayer().getCurrentHP() == 0) {
             game.setState(game.getStates().get("END"));
         }
         if (game.getArea().getEnemies().isEmpty()) {

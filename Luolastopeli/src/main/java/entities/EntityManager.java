@@ -6,8 +6,6 @@
 package entities;
 
 import java.util.ArrayList;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import logic.Area;
 import logic.Game;
 
@@ -34,7 +32,6 @@ public class EntityManager {
             if (enemy.isNextTo(player)) {
                 enemy.attack(player);
                 game.getStatus().statusMessage(enemy, player);
-                game.getStatus().update(player);
             }
         }
     }
@@ -56,10 +53,6 @@ public class EntityManager {
                 }
             }
         }
-    }
-
-    public void moveEnemies() {
-
     }
     
     /**
@@ -99,9 +92,5 @@ public class EntityManager {
     
     public void setPlayer(Player newPlayer) {
         player = newPlayer;
-    }
-
-    private void sendMessages() {
-        game.getStatus();
     }
 }

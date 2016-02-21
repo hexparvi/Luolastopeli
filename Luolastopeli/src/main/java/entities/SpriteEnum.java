@@ -18,12 +18,12 @@ public enum SpriteEnum {
     FLOOR_SPRITE("file:./src/main/resources/images/floorplaceholder.png"),
     WALL_SPRITE("file:./src/main/resources/images/wallplaceholder.png");
 
-    private String filePath;
+    private String imagePath;
     private Image image;
     private boolean imageLoaded;
 
     SpriteEnum(String imagePath) {
-        filePath = imagePath;
+        this.imagePath = imagePath;
         imageLoaded = false;
     }
 
@@ -31,7 +31,7 @@ public enum SpriteEnum {
      * Creates a new Image object based on file path.
      */
     public void loadImage() {
-        image = new Image(this.filePath);
+        image = new Image(imagePath);
         imageLoaded = true;
     }
     
@@ -47,6 +47,6 @@ public enum SpriteEnum {
     }
 
     public String getPath() {
-        return filePath;
+        return imagePath;
     }
 }

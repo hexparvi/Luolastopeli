@@ -15,27 +15,27 @@ import entities.Sprite;
  */
 public class Tile {
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     private Sprite entity;
     private String type;
 
-    public Tile(int xPos, int yPos, String initType) {
-        x = xPos;
-        y = yPos;
-        type = initType;
+    public Tile(int x, int y, String type) {
+        this.x = x;
+        this.y = y;
+        this.type = type;
     }
 
-    public void setType(String newType) {
-        type = newType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setEntity(Sprite newEntity) {
-        entity = newEntity;
+    public void setEntity(Sprite entity) {
+        this.entity = entity;
     }
 
     public Sprite getEntity() {

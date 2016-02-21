@@ -41,7 +41,7 @@ public class EndState extends State {
         if (input == KeyCode.R) {
             input = null;
             try {
-                game.restart();
+                game.init(); // restarts game
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(EndState.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -52,7 +52,7 @@ public class EndState extends State {
     public void draw() {
         gc.clearRect(0, 0, 500, 500);
         gc.setFill(Color.RED);
-        gc.strokeText("Game Over!", 250, 250);
+        gc.fillText("Game Over!", 250, 250);
     }
 
     @Override
@@ -62,12 +62,12 @@ public class EndState extends State {
 
     @Override
     public void setHandlers(Scene scene) {
-        scene.setOnKeyPressed(restartHandler);
+        scene.setOnKeyReleased(restartHandler);
     }
 
     @Override
     public void removeHandlers(Scene scene) {
-        scene.setOnKeyPressed(null);
+        scene.setOnKeyReleased(null);
     }
     
 }

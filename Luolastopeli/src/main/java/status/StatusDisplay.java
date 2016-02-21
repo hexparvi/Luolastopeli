@@ -14,29 +14,30 @@ import entities.Player;
 
 /**
  * HUD for displaying current player HP and recent entity actions.
+ *
  * @author hexparvi
  */
 public class StatusDisplay {
 
-    private int maxHP;
-    private int currentHP;
     private ArrayList<String> messages;
+    private Player player;
 
-    public StatusDisplay() {
-        maxHP = 10;
-        currentHP = 10;
-        messages = new ArrayList<>();
+    public StatusDisplay(Player player) {
+        this.player = player;
+        this.messages = new ArrayList<>();
     }
 
     public void draw(GraphicsContext gc) {
-        // separate stuff to methods (drawHP, drawMsg etc.)
         gc.setFill(Color.BLACK);
-        gc.fillRect(20, 30, 100, 10);
+        gc.fillRect(20, 30, player.getMaxHP() * 10, 10);
         gc.setFill(Color.RED);
-        gc.fillRect(20, 30, currentHP * 10, 10);
-        
+        gc.fillRect(20, 30, player.getCurrentHP() * 10, 10);
+        drawMessages(gc);
+    }
+
+    private void drawMessages(GraphicsContext gc) {
         ListIterator<String> li = messages.listIterator(messages.size());
-        
+
         int counter = 0;
         while (li.hasPrevious()) {
             gc.setFill(Color.color(0, 0, 0, 1.0 * (Math.pow(0.80, counter))));
@@ -45,14 +46,11 @@ public class StatusDisplay {
         }
     }
 
-    public void update(Player player) {
-        currentHP = player.getHP();
-    }
-    
     /**
      * Creates and adds an action message to messages list.
+     *
      * @param actor performer of action
-     * @param target target of action 
+     * @param target target of action
      */
     public void statusMessage(Actor actor, Actor target) {
         messages.add(actor.getType() + " hits " + target.getType() + " for " + actor.getDmg() + " dmg!");

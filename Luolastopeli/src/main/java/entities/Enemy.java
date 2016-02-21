@@ -6,17 +6,15 @@
 
 package entities;
 
-import javafx.scene.image.Image;
-import logic.Area;
-
 /**
  *
  * @author hexparvi
  */
 public class Enemy extends Actor {
-    public Enemy(int initialX, int initialY, String imgPath) {
-        super(initialX, initialY, imgPath);
-        super.setHP(5);
+    public Enemy(int x, int y, String imgPath) {
+        super(x, y, imgPath);
+        super.setMaxHP(5);
+        super.setCurrentHP(5);
         super.setDmg(1);
         super.setType("ENEMY");
     }

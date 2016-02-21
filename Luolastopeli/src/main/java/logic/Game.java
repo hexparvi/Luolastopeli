@@ -15,8 +15,6 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import status.StatusDisplay;
 
 /**
@@ -38,7 +36,6 @@ public class Game {
     public Game() {
         areaLoader = new AreaLoader();
         entityManager = new EntityManager();
-        display = new StatusDisplay();
         root = new Group();
         scene = new Scene(root);
         states = new HashMap<>();
@@ -51,10 +48,10 @@ public class Game {
      */
     public void init() throws FileNotFoundException {
         File mapFile = new File("./src/main/resources/maps/testroom.txt");
-        areaLoader.giveMapFile(mapFile);
-        areaLoader.load();
+        areaLoader.load(mapFile);
         currentArea = new Area(areaLoader.getMap(), areaLoader.getEnemies());
         player = areaLoader.getPlayer();
+        display = new StatusDisplay(player);
         entityManager.setGame(this);
         
         if (states.isEmpty()) {
@@ -97,14 +94,6 @@ public class Game {
         currentState.draw();
     }
 
-    public void restart() throws FileNotFoundException {
-        this.init();
-    }
-
-    public void gameOver() {
-        //display game over-screen
-    }
-
     public Area getArea() {
         return currentArea;
     }
@@ -131,21 +120,6 @@ public class Game {
     
     public HashMap<String, State> getStates() {
         return states;
-    }
-
-    /**
-     * Checks if game is over.
-     *
-     * @return true if either player or all enemies are dead, false otherwise
-     */
-    public boolean isOver() {
-        if (player.getHP() == 0) {
-            return true;
-        }
-        if (currentArea.getEnemies().isEmpty()) {
-            return true;
-        }
-        return false;
     }
 
 }
