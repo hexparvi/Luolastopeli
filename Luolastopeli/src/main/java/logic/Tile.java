@@ -5,6 +5,7 @@
  */
 package logic;
 
+import entities.SpriteEnum;
 import javafx.scene.canvas.GraphicsContext;
 import entities.Sprite;
 
@@ -52,19 +53,19 @@ public class Tile {
     public void draw(GraphicsContext gc) {
         switch (type) {
             case "FLOOR":
-                gc.drawImage(TestSpriteEnum.FLOOR_SPRITE.getImage(), x * 32, y * 32);
+                gc.drawImage(SpriteEnum.FLOOR_SPRITE.getImage(), x * 32, y * 32);
                 break;
             case "WALL":
-                gc.drawImage(TestSpriteEnum.WALL_SPRITE.getImage(), x * 32, y * 32);
+                gc.drawImage(SpriteEnum.WALL_SPRITE.getImage(), x * 32, y * 32);
                 break;
         }
 
         if (hasEntity()) {
             if (getEntity().getType().equals("PLAYER")) {
-                gc.drawImage(TestSpriteEnum.PLAYER_SPRITE.getImage(), x * 32, y * 32);
+                gc.drawImage(SpriteEnum.PLAYER_SPRITE.getImage(), x * 32, y * 32);
 
             } else {
-                gc.drawImage(TestSpriteEnum.ENEMY_SPRITE.getImage(), x * 32, y * 32);
+                gc.drawImage(SpriteEnum.ENEMY_SPRITE.getImage(), x * 32, y * 32);
 
             }
         }

@@ -5,17 +5,13 @@
  */
 package logic;
 
+import entities.SpriteEnum;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.image.Image;
 import entities.Enemy;
 import entities.Player;
-import entities.Sprite;
 
 /**
  * Loads Tiles and Entities from a .txt file.
@@ -51,6 +47,7 @@ public class AreaLoader {
             }
             i++;
         }
+        scanner.close();
     }
     
     /**
@@ -61,11 +58,11 @@ public class AreaLoader {
      */
     private void checkTileContent(char c, int x, int y) {
         if (c == 'P') {
-            player = new Player(x, y, TestSpriteEnum.PLAYER_SPRITE.getPath());
+            player = new Player(x, y, SpriteEnum.PLAYER_SPRITE.getPath());
             map[x][y] = new Tile(x, y, "FLOOR");
             map[x][y].setEntity(player);
         } else if (c == 'E') {
-            Enemy enemy = new Enemy(x, y, TestSpriteEnum.ENEMY_SPRITE.getPath());
+            Enemy enemy = new Enemy(x, y, SpriteEnum.ENEMY_SPRITE.getPath());
             enemies.add(enemy);
             map[x][y] = new Tile(x, y, "FLOOR");
             map[x][y].setEntity(enemy);

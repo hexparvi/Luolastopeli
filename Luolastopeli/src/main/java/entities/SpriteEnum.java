@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logic;
+package entities;
 
 import javafx.scene.image.Image;
 
@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
  *
  * @author hexparvi
  */
-public enum TestSpriteEnum {
+public enum SpriteEnum {
 
     PLAYER_SPRITE("file:./src/main/resources/images/playerplaceholder.png"),
     ENEMY_SPRITE("file:./src/main/resources/images/enemyplaceholder.png"),
@@ -22,7 +22,7 @@ public enum TestSpriteEnum {
     private Image image;
     private boolean imageLoaded;
 
-    TestSpriteEnum(String imagePath) {
+    SpriteEnum(String imagePath) {
         filePath = imagePath;
         imageLoaded = false;
     }
