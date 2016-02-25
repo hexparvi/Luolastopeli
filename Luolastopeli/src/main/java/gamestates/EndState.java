@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gamestates;
 
 import java.io.FileNotFoundException;
@@ -15,6 +14,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import logic.Game;
 
 /**
@@ -22,10 +24,10 @@ import logic.Game;
  * @author hexparvi
  */
 public class EndState extends State {
-    
+
     private EventHandler<KeyEvent> restartHandler;
     private KeyCode input;
-    
+
     public EndState(Game game) {
         super(game);
         restartHandler = new EventHandler<KeyEvent>() {
@@ -41,7 +43,7 @@ public class EndState extends State {
         if (input == KeyCode.R) {
             input = null;
             try {
-                game.init(); // restarts game
+                game.init(); // restart game
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(EndState.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -50,9 +52,22 @@ public class EndState extends State {
 
     @Override
     public void draw() {
-        gc.clearRect(0, 0, 500, 500);
-        gc.setFill(Color.RED);
-        gc.fillText("Game Over!", 250, 250);
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        Font font = Font.font("Verdana", FontWeight.BOLD, 48);
+        gc.setFont(font);
+        gc.setTextAlign(TextAlignment.CENTER);
+
+        if (game.getPlayer().getCurrentHP() == 0) {
+            gc.setFill(Color.CRIMSON);
+            gc.fillText("Game Over!", canvas.getWidth() / 2, canvas.getHeight() / 2);
+        } else {
+            gc.setFill(Color.DARKSEAGREEN);
+            gc.fillText("You Win!", canvas.getWidth() / 2, canvas.getHeight() / 2);
+        }
+
+        font = Font.font("Verdana", FontWeight.BOLD, 24);
+        gc.setFont(font);
+        gc.fillText("\nPress R to restart.", canvas.getWidth() / 2, canvas.getHeight() / 2);
     }
 
     @Override
@@ -69,5 +84,5 @@ public class EndState extends State {
     public void removeHandlers(Scene scene) {
         scene.setOnKeyReleased(null);
     }
-    
+
 }

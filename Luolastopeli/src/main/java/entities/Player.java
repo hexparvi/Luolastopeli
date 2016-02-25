@@ -11,6 +11,7 @@ package entities;
  * @author hexparvi
  */
 public class Player extends Actor {
+    private int points;
 
     public Player(int x, int y, String imgPath) {
         super(x, y, imgPath);
@@ -18,5 +19,18 @@ public class Player extends Actor {
         super.setCurrentHP(10);
         super.setDmg(5);
         super.setType("PLAYER");
+        points = 0;
+    }
+    
+    public int getPoints() {
+        return points;
+    }
+    
+    public void increasePoints(int amount) {
+        points += amount;
+    }
+    
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

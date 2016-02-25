@@ -27,7 +27,7 @@ public class PlayState extends State {
 
     public PlayState(Game game) {
         super(game);
-        hudCanvas = new Canvas(500, 500);
+        hudCanvas = new Canvas(canvas.getWidth(), canvas.getHeight());
         hudGC = hudCanvas.getGraphicsContext2D();
         group.getChildren().add(hudCanvas);
         playerMoved = false;
@@ -64,9 +64,9 @@ public class PlayState extends State {
 
     @Override
     public void draw() {
-        gc.clearRect(0, 0, 500, 500);
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         game.getArea().draw(gc);
-        hudGC.clearRect(0, 0, 500, 500);
+        hudGC.clearRect(0, 0, hudCanvas.getWidth(), hudCanvas.getHeight());
         game.getDisplay().draw(hudGC);
     }
 

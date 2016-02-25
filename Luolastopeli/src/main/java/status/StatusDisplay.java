@@ -5,12 +5,14 @@
  */
 package status;
 
+import entities.Actor;
+import entities.Player;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import entities.Actor;
-import entities.Player;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 /**
  * HUD for displaying current player HP and recent entity actions.
@@ -28,10 +30,16 @@ public class StatusDisplay {
     }
 
     public void draw(GraphicsContext gc) {
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.CRIMSON);
         gc.fillRect(20, 30, player.getMaxHP() * 10, 10);
         gc.setFill(Color.RED);
         gc.fillRect(20, 30, player.getCurrentHP() * 10, 10);
+        
+        Font font = Font.font("Verdana", FontWeight.NORMAL, 12);
+        gc.setFont(font);
+        gc.setFill(Color.BLACK);
+        gc.fillText("Points: " + player.getPoints(), 200, 30);
+        
         drawMessages(gc);
     }
 

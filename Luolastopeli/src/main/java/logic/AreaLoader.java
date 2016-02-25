@@ -5,35 +5,40 @@
  */
 package logic;
 
+import entities.Enemy;
+import entities.Player;
 import entities.SpriteEnum;
+import entities.Treasure;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import entities.Enemy;
-import entities.Player;
 
 /**
  * Loads Tiles and Entities from a .txt file.
+ *
  * @author hexparvi
  */
 public class AreaLoader {
 
     private ArrayList<Enemy> enemies;
-    //private ArrayList<Sprite> objects;
+    private ArrayList<Treasure> treasures;
     private Player player;
     private Tile[][] map;
     private Scanner scanner;
 
     public AreaLoader() {
+        enemies = new ArrayList<Enemy>();
+        treasures = new ArrayList<Treasure>();
     }
-    
+
     public void giveMapFile(File mapfile) throws FileNotFoundException {
         scanner = new Scanner(mapfile);
     }
 
     /**
      * Fills map-array with Tiles.
+     *
      * @param mapfile
      * @throws java.io.FileNotFoundException
      */
@@ -41,7 +46,6 @@ public class AreaLoader {
         scanner = new Scanner(mapfile);
         map = new Tile[scanner.nextInt()][scanner.nextInt()];
         scanner.nextLine(); // consumes leftover newline character
-        enemies = new ArrayList<Enemy>();
         int i = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -52,9 +56,10 @@ public class AreaLoader {
         }
         scanner.close();
     }
-    
+
     /**
      * Checks tile content.
+     *
      * @param c char representation of tile content
      * @param x x-coordinate of tile
      * @param y y-coordinate of tile
@@ -64,13 +69,22 @@ public class AreaLoader {
             player = new Player(x, y, SpriteEnum.PLAYER_SPRITE.getPath());
             map[x][y] = new Tile(x, y, "FLOOR");
             map[x][y].setEntity(player);
+            
         } else if (c == 'E') {
             Enemy enemy = new Enemy(x, y, SpriteEnum.ENEMY_SPRITE.getPath());
             enemies.add(enemy);
             map[x][y] = new Tile(x, y, "FLOOR");
             map[x][y].setEntity(enemy);
+            
+        } else if (c == 'T') {
+            Treasure treasure = new Treasure(x, y, SpriteEnum.TREASURE_SPRITE.getPath());
+            treasures.add(treasure);
+            map[x][y] = new Tile(x, y, "FLOOR");
+            map[x][y].setItem(treasure);
+            
         } else if (c == '.') {
             map[x][y] = new Tile(x, y, "FLOOR");
+            
         } else {
             map[x][y] = new Tile(x, y, "WALL");
         }

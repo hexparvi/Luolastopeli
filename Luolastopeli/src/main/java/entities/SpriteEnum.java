@@ -16,7 +16,8 @@ public enum SpriteEnum {
     PLAYER_SPRITE("file:./src/main/resources/images/playerplaceholder.png"),
     ENEMY_SPRITE("file:./src/main/resources/images/enemyplaceholder.png"),
     FLOOR_SPRITE("file:./src/main/resources/images/floorplaceholder.png"),
-    WALL_SPRITE("file:./src/main/resources/images/wallplaceholder.png");
+    WALL_SPRITE("file:./src/main/resources/images/wallplaceholder.png"),
+    TREASURE_SPRITE("file:./src/main/resources/images/treasureplaceholder.png");
 
     private String imagePath;
     private Image image;

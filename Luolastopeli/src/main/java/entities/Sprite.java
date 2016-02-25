@@ -14,7 +14,6 @@ import logic.Area;
 abstract public class Sprite {
     int x;
     int y;
-    int speed;
     String type;
     String imgPath;
 
@@ -22,43 +21,10 @@ abstract public class Sprite {
         this.imgPath = imgPath;
         this.x = x;
         this.y = y;
-        speed = 1;
     }
     
     public void act() {
         
-    }
-    
-    /**
-     * Moves sprite in area.
-     * @param direction direction of movement
-     * @param map area in which sprite is located
-     */
-    public void move(String direction, Area map) {
-        map.removeEntityFromPos(x, y);
-        switch (direction) {
-            case "UP":
-                if (map.isWalkable(x, y - speed)) {
-                    y = y - speed;
-                }
-                break;
-            case "DOWN":
-                if (map.isWalkable(x, y + speed)) {
-                    y = y + speed;
-                }
-                break;
-            case "LEFT":
-                if (map.isWalkable(x - speed, y)) {
-                    x = x - speed;
-                }
-                break;
-            case "RIGHT":
-                if (map.isWalkable(x + speed, y)) {
-                    x = x + speed;
-                }
-                break;
-        }
-        map.setEntityToPos(x, y, this);
     }
     
     public int getX() {

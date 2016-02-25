@@ -26,6 +26,7 @@ public class Game {
     private Player player;
     private Area currentArea;
     private AreaLoader areaLoader;
+    private AreaGenerator areaGen;
     private EntityManager entityManager;
     private StatusDisplay display;
     private State currentState;
@@ -35,6 +36,7 @@ public class Game {
 
     public Game() {
         areaLoader = new AreaLoader();
+        areaGen = new AreaGenerator(20, 20);
         entityManager = new EntityManager();
         root = new Group();
         scene = new Scene(root);
@@ -49,6 +51,11 @@ public class Game {
     public void init() throws FileNotFoundException {
         File mapFile = new File("./src/main/resources/maps/testroom.txt");
         areaLoader.load(mapFile);
+        
+//        areaGen.run();
+//        currentArea = new Area(areaGen.getTilemap(), areaGen.getEnemies());
+//        player = areaGen.getPlayer();
+        
         currentArea = new Area(areaLoader.getMap(), areaLoader.getEnemies());
         player = areaLoader.getPlayer();
         display = new StatusDisplay(player);

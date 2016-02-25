@@ -27,7 +27,7 @@ public abstract class State {
     public State(Game game) {
         this.game = game;
         this.group = new Group();
-        this.canvas = new Canvas(500, 500);
+        this.canvas = new Canvas(640, 640);
         gc = canvas.getGraphicsContext2D();
         group.getChildren().add(canvas);
     }

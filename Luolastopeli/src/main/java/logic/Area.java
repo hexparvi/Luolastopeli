@@ -5,10 +5,12 @@
  */
 package logic;
 
-import java.util.ArrayList;
-import javafx.scene.canvas.GraphicsContext;
+import entities.Actor;
 import entities.Enemy;
 import entities.Sprite;
+import entities.Treasure;
+import java.util.ArrayList;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  *
@@ -27,7 +29,7 @@ public class Area {
     public void draw(GraphicsContext gc) {
         for (int i = 0; i < tileMap.length; i++) {
             for (int j = 0; j < tileMap[0].length; j++) {
-                tileMap[i][j].draw(gc);
+                tileMap[i][j].drawTile(gc);
             }
         }
     }
@@ -55,7 +57,7 @@ public class Area {
         return tileMap[x][y].hasEntity();
     }
 
-    public Sprite getEntityFromPos(int x, int y) {
+    public Actor getEntityFromPos(int x, int y) {
         return tileMap[x][y].getEntity();
     }
 
@@ -63,8 +65,20 @@ public class Area {
         tileMap[x][y].removeEntity();
     }
 
-    public void setEntityToPos(int x, int y, Sprite entity) {
+    public void setEntityToPos(int x, int y, Actor entity) {
         tileMap[x][y].setEntity(entity);
+    }
+    
+    public boolean containsItem(int x, int y) {
+        return tileMap[x][y].hasItem();
+    }
+    
+    public Treasure getItemFromPos(int x, int y) {
+        return tileMap[x][y].getItem();
+    }
+    
+    public void removeItemFromPos(int x, int y) {
+        tileMap[x][y].removeItem();
     }
 
     public ArrayList<Enemy> getEnemies() {

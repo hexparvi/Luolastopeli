@@ -5,19 +5,23 @@
  */
 package logic;
 
-import entities.SpriteEnum;
-import javafx.scene.canvas.GraphicsContext;
+import entities.Actor;
 import entities.Sprite;
+import entities.SpriteEnum;
+import entities.Treasure;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * Container for tile type and an entity.
+ *
  * @author hexparvi
  */
 public class Tile {
 
     private final int x;
     private final int y;
-    private Sprite entity;
+    private Actor entity;
+    private Treasure item;
     private String type;
 
     public Tile(int x, int y, String type) {
@@ -34,11 +38,11 @@ public class Tile {
         return type;
     }
 
-    public void setEntity(Sprite entity) {
+    public void setEntity(Actor entity) {
         this.entity = entity;
     }
 
-    public Sprite getEntity() {
+    public Actor getEntity() {
         return entity;
     }
 
@@ -50,7 +54,23 @@ public class Tile {
         return entity != null;
     }
 
-    public void draw(GraphicsContext gc) {
+    public void setItem(Treasure item) {
+        this.item = item;
+    }
+
+    public Treasure getItem() {
+        return item;
+    }
+
+    public void removeItem() {
+        this.item = null;
+    }
+
+    public boolean hasItem() {
+        return item != null;
+    }
+
+    public void drawTile(GraphicsContext gc) {
         switch (type) {
             case "FLOOR":
                 gc.drawImage(SpriteEnum.FLOOR_SPRITE.getImage(), x * 32, y * 32);
@@ -60,13 +80,16 @@ public class Tile {
                 break;
         }
 
+        if (hasItem()) {
+            gc.drawImage(SpriteEnum.TREASURE_SPRITE.getImage(), x * 32, y * 32);
+        }
+
         if (hasEntity()) {
             if (getEntity().getType().equals("PLAYER")) {
                 gc.drawImage(SpriteEnum.PLAYER_SPRITE.getImage(), x * 32, y * 32);
 
             } else {
                 gc.drawImage(SpriteEnum.ENEMY_SPRITE.getImage(), x * 32, y * 32);
-
             }
         }
     }

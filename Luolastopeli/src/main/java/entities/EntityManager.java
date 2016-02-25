@@ -42,11 +42,20 @@ public class EntityManager {
      */
     public void updatePlayer(String input) {
         player.move(input, area);
-        ArrayList<Sprite> neighbors = getNeighbors(player.getX(), player.getY());
-        for (Sprite neighbor : neighbors) {
+        
+        if (area.containsItem(player.getX(), player.getY())) {
+            Treasure item = area.getItemFromPos(player.getX(), player.getY());
+            player.increasePoints(item.getWorth());
+            area.removeItemFromPos(player.getX(), player.getY());
+            System.out.println("points: " + player.getPoints());
+        }
+        
+        ArrayList<Actor> neighbors = getNeighbors(player.getX(), player.getY());
+        for (Actor neighbor : neighbors) {
             if (neighbor.getType().equals("ENEMY")) {
-                boolean targetDied = player.attack((Actor) neighbor);
-                game.getStatus().statusMessage(player, (Actor) neighbor); // eww typecasts
+                boolean targetDied = player.attack(neighbor);
+                game.getStatus().statusMessage(player, neighbor);
+                
                 if (targetDied) {
                     area.removeEntityFromPos(neighbor.getX(), neighbor.getY());
                     enemies.remove(neighbor);
@@ -61,8 +70,8 @@ public class EntityManager {
      * @param y y-coordinate of the tile
      * @return list of neighboring Sprites
      */
-    private ArrayList<Sprite> getNeighbors(int x, int y) {
-        ArrayList<Sprite> neighbors = new ArrayList<>();
+    private ArrayList<Actor> getNeighbors(int x, int y) {
+        ArrayList<Actor> neighbors = new ArrayList<>();
         if (area.containsEntity(x - 1, y)) {
             neighbors.add(area.getEntityFromPos(x - 1, y));
         }
