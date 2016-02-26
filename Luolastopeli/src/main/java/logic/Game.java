@@ -18,7 +18,7 @@ import javafx.scene.Scene;
 import status.StatusDisplay;
 
 /**
- *
+ *Handles gameplay.
  * @author hexparvi
  */
 public class Game {
@@ -43,7 +43,7 @@ public class Game {
     }
 
     /**
-     * Initializes currentArea, player and entityManager.
+     * Initializes currentArea, game state, player and entityManager.
      *
      * @throws FileNotFoundException
      */
@@ -69,6 +69,9 @@ public class Game {
         changeArea();
     }
 
+    /**
+     * Creates possible game states and puts them on a list.
+     */
     private void createStates() {
         states.put("PLAY", new PlayState(this));
         states.put("END", new EndState(this));
@@ -83,6 +86,10 @@ public class Game {
         entityManager.setPlayer(player);
     }
 
+    /**
+     * Removes previous state and sets a new one.
+     * @param state new State
+     */
     public void setState(State state) {
         if (currentState != null) {
             currentState.removeHandlers(scene);
@@ -93,10 +100,16 @@ public class Game {
         root.getChildren().add(state.getGroup());
     }
 
+    /**
+     * Update game state.
+     */
     public void updateState() {
         currentState.update();
     }
-
+    
+    /**
+     * Draw game state.
+     */
     public void drawState() {
         currentState.draw();
     }

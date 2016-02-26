@@ -14,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import logic.Game;
 
 /**
- *
+ *Provides methods for updating and drawing game states.
  * @author hexparvi
  */
 public abstract class State {

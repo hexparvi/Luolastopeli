@@ -6,7 +6,7 @@
 package logic;
 
 /**
- *
+ *Stores room coordinates for level generation.
  * @author hexparvi
  */
 public class Room {
@@ -50,6 +50,11 @@ public class Room {
         return centerY;
     }
     
+    /**
+     * Checks if two rooms intersect each other.
+     * @param room
+     * @return true if rooms intersect, false otherwise
+     */
     public boolean intersects(Room room) {
         if (leftX >= room.getRightX() + 1
                 || rightX + 1 <= room.getLeftX()

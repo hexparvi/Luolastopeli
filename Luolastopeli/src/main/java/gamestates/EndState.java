@@ -20,7 +20,7 @@ import javafx.scene.text.TextAlignment;
 import logic.Game;
 
 /**
- *
+ *Handles updating and drawing game over-screen.
  * @author hexparvi
  */
 public class EndState extends State {

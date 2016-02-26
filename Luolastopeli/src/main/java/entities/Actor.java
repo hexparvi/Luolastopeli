@@ -8,7 +8,7 @@ package entities;
 import logic.Area;
 
 /**
- *
+ *Handles movement and HP of actors.
  * @author hexparvi
  */
 abstract public class Actor extends Sprite {
@@ -48,39 +48,39 @@ abstract public class Actor extends Sprite {
     }
     
      /**
-     * Moves sprite in area.
+     * Moves actor in area.
      * @param direction direction of movement
-     * @param map area in which sprite is located
+     * @param area area in which actor is located
      */
-    public void move(String direction, Area map) {
-        map.removeEntityFromPos(x, y);
+    public void move(String direction, Area area) {
+        area.removeEntityFromPos(x, y);
         switch (direction) {
             case "UP":
-                if (map.isWalkable(x, y - speed)) {
+                if (area.isWalkable(x, y - speed)) {
                     y = y - speed;
                 }
                 break;
             case "DOWN":
-                if (map.isWalkable(x, y + speed)) {
+                if (area.isWalkable(x, y + speed)) {
                     y = y + speed;
                 }
                 break;
             case "LEFT":
-                if (map.isWalkable(x - speed, y)) {
+                if (area.isWalkable(x - speed, y)) {
                     x = x - speed;
                 }
                 break;
             case "RIGHT":
-                if (map.isWalkable(x + speed, y)) {
+                if (area.isWalkable(x + speed, y)) {
                     x = x + speed;
                 }
                 break;
         }
-        map.setEntityToPos(x, y, this);
+        area.setEntityToPos(x, y, this);
     }
     
     /**
-     * Reduces caller HP or sets it to zero if damageTaken is greater than caller HP.
+     * Reduces caller HP or sets it to zero if damageTaken is greater than currentHP.
      * 
      * @param dmgTaken damage
      * 
@@ -96,10 +96,20 @@ abstract public class Actor extends Sprite {
         }
     }
 
+    /**
+     * Attacks target.
+     * @param target
+     * @return true if target died, false otherwise
+     */
     public boolean attack(Actor target) {
         return target.takeDmg(this.dmg);
     }
 
+    /**
+     * Checks if caller is next to entity horizontally or vertically.
+     * @param entity
+     * @return true if caller is next to entity, false otherwise
+     */
     public boolean isNextTo(Sprite entity) {
         int entityX = entity.getX();
         int entityY = entity.getY();

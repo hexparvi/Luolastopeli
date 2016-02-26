@@ -15,7 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 /**
- * HUD for displaying current player HP and recent entity actions.
+ * HUD for displaying current player HP, points and recent entity actions.
  *
  * @author hexparvi
  */
@@ -29,6 +29,10 @@ public class StatusDisplay {
         this.messages = new ArrayList<>();
     }
 
+    /**
+     * Draws HUD.
+     * @param gc GraphicsContext to be drawn on
+     */
     public void draw(GraphicsContext gc) {
         gc.setFill(Color.CRIMSON);
         gc.fillRect(30, 50, player.getMaxHP() * 10, 10);
@@ -42,7 +46,7 @@ public class StatusDisplay {
         
         drawMessages(gc);
     }
-
+    
     private void drawMessages(GraphicsContext gc) {
         ListIterator<String> li = messages.listIterator(messages.size());
 

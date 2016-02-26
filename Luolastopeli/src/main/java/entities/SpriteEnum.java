@@ -8,7 +8,7 @@ package entities;
 import javafx.scene.image.Image;
 
 /**
- *
+ *Stores file paths and loads sprite images.
  * @author hexparvi
  */
 public enum SpriteEnum {

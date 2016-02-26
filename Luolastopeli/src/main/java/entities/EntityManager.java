@@ -10,7 +10,7 @@ import logic.Area;
 import logic.Game;
 
 /**
- *
+ *Handles entity movement and status changes.
  * @author hexparvi
  */
 public class EntityManager {

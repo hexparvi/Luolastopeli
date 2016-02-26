@@ -5,13 +5,9 @@
  */
 package entities;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import logic.Area;
 import logic.Tile;
-import entities.Enemy;
-import entities.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -26,6 +22,7 @@ import org.junit.Test;
 public class ActorTest {
 
     Player actor;
+    Area area;
 
     public ActorTest() {
     }
@@ -39,9 +36,21 @@ public class ActorTest {
     }
 
     @Before
-    public void setUp() throws FileNotFoundException {
+    public void setUp() {
         actor = new Player(0, 0);
         actor.setCurrentHP(10);
+        Tile[][] tilemap = new Tile[3][3];
+        
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                tilemap[x][y] = new Tile(x, y, "FLOOR");
+            }
+        }
+        
+        tilemap[1][0] = new Tile(0, 1, "WALL");
+        tilemap[1][1].setEntity(new Enemy(1, 1));
+        
+        area = new Area(tilemap, new ArrayList<>());
     }
 
     @After
@@ -58,5 +67,27 @@ public class ActorTest {
     public void hpDoesntGoBelowZero() {
         actor.takeDmg(11);
         assertEquals(0, actor.getCurrentHP());
+    }
+    
+    @Test
+    public void moveChangesXY() {
+        actor.move("DOWN", area);
+        assertEquals(0, actor.getX());
+        assertEquals(1, actor.getY());
+    }
+    
+    @Test
+    public void cantWalkOnWalls() {
+        actor.move("RIGHT", area);
+        assertEquals(0, actor.getX());
+        assertEquals(0, actor.getY());
+    }
+    
+    @Test
+    public void cantWalkOnEnemies() {
+        actor.move("DOWN", area);
+        actor.move("RIGHT", area);
+        assertEquals(0, actor.getX());
+        assertEquals(1, actor.getY());
     }
 }

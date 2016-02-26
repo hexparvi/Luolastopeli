@@ -6,7 +6,7 @@
 package entities;
 
 /**
- *
+ *Handles enemy movement behavior.
  * @author hexparvi
  */
 public class Enemy extends Actor {

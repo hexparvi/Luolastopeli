@@ -30,6 +30,12 @@ public class AreaLoader {
         enemies = new ArrayList<Enemy>();
         treasures = new ArrayList<Treasure>();
     }
+    
+    /**
+     * Creates a new Scanner with map file.
+     * @param mapfile File to be read
+     * @throws FileNotFoundException 
+     */
 
     public void giveMapFile(File mapfile) throws FileNotFoundException {
         scanner = new Scanner(mapfile);

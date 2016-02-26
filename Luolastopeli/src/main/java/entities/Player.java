@@ -7,7 +7,7 @@
 package entities;
 
 /**
- *
+ *Handles player healing and point collection.
  * @author hexparvi
  */
 public class Player extends Actor {
@@ -26,6 +26,10 @@ public class Player extends Actor {
         return points;
     }
     
+    /**
+     * Increases player currentHP by amount, capped at maxHP.
+     * @param amount amount of HP to be healed
+     */
     public void heal(int amount) {
         if (getCurrentHP() + amount <= getMaxHP()) {
             setCurrentHP(getCurrentHP() + amount);
@@ -34,6 +38,10 @@ public class Player extends Actor {
         }
     }
     
+    /**
+     * Increases player points.
+     * @param amount amount of points to add
+     */
     public void increasePoints(int amount) {
         points += amount;
     }

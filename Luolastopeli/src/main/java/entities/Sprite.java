@@ -8,7 +8,7 @@ package entities;
 import logic.Area;
 
 /**
- *
+ *Stores sprite position, type and file path to image.
  * @author hexparvi
  */
 abstract public class Sprite {

@@ -6,7 +6,7 @@
 package entities;
 
 /**
- *
+ *Stores points and healing gained from collecting treasure.
  * @author hexparvi
  */
 public class Treasure extends Sprite {

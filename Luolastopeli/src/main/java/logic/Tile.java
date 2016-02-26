@@ -12,7 +12,7 @@ import entities.Treasure;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * Container for tile type and an entity.
+ * Container for tile type, entity and item.
  *
  * @author hexparvi
  */
@@ -50,6 +50,10 @@ public class Tile {
         entity = null;
     }
 
+    /**
+     * Checks if tile contains an entity.
+     * @return true if contains an entity, false otherwise
+     */
     public boolean hasEntity() {
         return entity != null;
     }
@@ -66,10 +70,18 @@ public class Tile {
         this.item = null;
     }
 
+    /**
+     * Checks if tile contains an item.
+     * @return true if contains an item, false otherwise.
+     */
     public boolean hasItem() {
         return item != null;
     }
-
+    
+    /**
+     * Draws tile and any item and/or entity contained in it.
+     * @param gc GraphicsContext to be drawn on
+     */
     public void drawTile(GraphicsContext gc) {
         switch (type) {
             case "FLOOR":

@@ -15,7 +15,7 @@ import javafx.scene.input.KeyEvent;
 import logic.Game;
 
 /**
- *
+ *Handles updating and drawing gameplay.
  * @author hexparvi
  */
 public class PlayState extends State {
