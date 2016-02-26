@@ -5,6 +5,7 @@
  */
 package gamestates;
 
+import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -24,6 +25,7 @@ public class PlayState extends State {
     private String input;
     private boolean playerMoved;
     private EventHandler<KeyEvent> moveHandler;
+    private ArrayList<String> legalMoves;
 
     public PlayState(Game game) {
         super(game);
@@ -32,11 +34,18 @@ public class PlayState extends State {
         group.getChildren().add(hudCanvas);
         playerMoved = false;
         input = "";
+        legalMoves = new ArrayList<>();
+        legalMoves.add("UP");
+        legalMoves.add("DOWN");
+        legalMoves.add("LEFT");
+        legalMoves.add("RIGHT");
         moveHandler = new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
                 input = e.getCode().toString();
-                playerMoved = true;
+                if (legalMoves.contains(input)) {
+                    playerMoved = true;
+                }
             }
         };
     }
