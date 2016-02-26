@@ -52,15 +52,33 @@ public class EntityManager {
             area.removeItemFromPos(player.getX(), player.getY());
         }
 
-        ArrayList<Actor> neighbors = getNeighbors(player.getX(), player.getY());
-        for (Actor neighbor : neighbors) {
-            if (neighbor.getType().equals("ENEMY")) {
-                boolean targetDied = player.attack(neighbor);
-                game.getStatus().statusMessage(player, neighbor);
+        int frontX = player.getX();
+        int frontY = player.getY();
+
+        switch (input) {
+            case "UP":
+                frontY--;
+                break;
+            case "DOWN":
+                frontY++;
+                break;
+            case "LEFT":
+                frontX--;
+                break;
+            case "RIGHT":
+                frontX++;
+                break;
+        }
+
+        if (area.containsEntity(frontX, frontY)) {
+            Actor target = area.getEntityFromPos(frontX, frontY);
+            if (target.getType().equals("ENEMY")) {
+                boolean targetDied = player.attack(target);
+                game.getStatus().statusMessage(player, target);
 
                 if (targetDied) {
-                    area.removeEntityFromPos(neighbor.getX(), neighbor.getY());
-                    enemies.remove(neighbor);
+                    area.removeEntityFromPos(target.getX(), target.getY());
+                    enemies.remove(target);
                 }
             }
         }
