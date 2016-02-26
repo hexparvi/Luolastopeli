@@ -53,6 +53,8 @@ public class EndState extends State {
     @Override
     public void draw() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         Font font = Font.font("Verdana", FontWeight.BOLD, 48);
         gc.setFont(font);
         gc.setTextAlign(TextAlignment.CENTER);
@@ -61,7 +63,7 @@ public class EndState extends State {
             gc.setFill(Color.CRIMSON);
             gc.fillText("Game Over!", canvas.getWidth() / 2, canvas.getHeight() / 2);
         } else {
-            gc.setFill(Color.DARKSEAGREEN);
+            gc.setFill(Color.CHARTREUSE);
             gc.fillText("You Win!", canvas.getWidth() / 2, canvas.getHeight() / 2);
         }
 

@@ -14,12 +14,16 @@ public class Room {
     private int rightX;
     private int topY;
     private int botY;
+    private int centerX;
+    private int centerY;
     
     public Room(int startingX, int startingY, int width, int length) {
         leftX = startingX;
         rightX = startingX + width;
         topY = startingY;
         botY = startingY + length;
+        centerX = (rightX + leftX) / 2;
+        centerY = (botY + topY) / 2;
     }
     
     public int getLeftX() {
@@ -36,6 +40,14 @@ public class Room {
     
     public int getTopY() {
         return topY;
+    }
+    
+    public int getCenterX() {
+        return centerX;
+    }
+    
+    public int getCenterY() {
+        return centerY;
     }
     
     public boolean intersects(Room room) {

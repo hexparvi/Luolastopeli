@@ -26,6 +26,14 @@ public class Player extends Actor {
         return points;
     }
     
+    public void heal(int amount) {
+        if (getCurrentHP() + amount <= getMaxHP()) {
+            setCurrentHP(getCurrentHP() + amount);
+        } else {
+            setCurrentHP(getMaxHP());
+        }
+    }
+    
     public void increasePoints(int amount) {
         points += amount;
     }

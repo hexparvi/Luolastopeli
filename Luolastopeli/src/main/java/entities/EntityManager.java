@@ -14,6 +14,7 @@ import logic.Game;
  * @author hexparvi
  */
 public class EntityManager {
+
     private Area area;
     private ArrayList<Enemy> enemies;
     private Player player;
@@ -27,35 +28,36 @@ public class EntityManager {
      */
     public void updateEnemies() {
         for (Enemy enemy : enemies) {
-            String direction = enemy.findDirection(player.getX(), player.getY());
-            enemy.move(direction, area);
             if (enemy.isNextTo(player)) {
                 enemy.attack(player);
                 game.getStatus().statusMessage(enemy, player);
             }
+            String direction = enemy.findDirection(player.getX(), player.getY());
+            enemy.move(direction, area);
         }
     }
 
     /**
      * Handles player movement and attacking.
+     *
      * @param input player input as String
      */
     public void updatePlayer(String input) {
         player.move(input, area);
-        
+
         if (area.containsItem(player.getX(), player.getY())) {
             Treasure item = area.getItemFromPos(player.getX(), player.getY());
             player.increasePoints(item.getWorth());
+            player.heal(item.getHealing());
             area.removeItemFromPos(player.getX(), player.getY());
-            System.out.println("points: " + player.getPoints());
         }
-        
+
         ArrayList<Actor> neighbors = getNeighbors(player.getX(), player.getY());
         for (Actor neighbor : neighbors) {
             if (neighbor.getType().equals("ENEMY")) {
                 boolean targetDied = player.attack(neighbor);
                 game.getStatus().statusMessage(player, neighbor);
-                
+
                 if (targetDied) {
                     area.removeEntityFromPos(neighbor.getX(), neighbor.getY());
                     enemies.remove(neighbor);
@@ -63,9 +65,10 @@ public class EntityManager {
             }
         }
     }
-    
+
     /**
      * Gets entities located in neighboring tiles.
+     *
      * @param x x-coordinate of the tile
      * @param y y-coordinate of the tile
      * @return list of neighboring Sprites
@@ -86,19 +89,19 @@ public class EntityManager {
         }
         return neighbors;
     }
-    
+
     public void setGame(Game newGame) {
         game = newGame;
     }
-    
+
     public void setEnemies(ArrayList<Enemy> newEnemies) {
         enemies = newEnemies;
     }
-    
+
     public void setArea(Area newArea) {
         area = newArea;
     }
-    
+
     public void setPlayer(Player newPlayer) {
         player = newPlayer;
     }

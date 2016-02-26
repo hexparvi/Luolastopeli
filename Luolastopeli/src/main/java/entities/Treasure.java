@@ -11,14 +11,20 @@ package entities;
  */
 public class Treasure extends Sprite {
     private int worth;
+    private int healing;
 
     public Treasure(int x, int y, String imgPath) {
         super(x, y, imgPath);
         super.setType("TREASURE");
         this.worth = 5;
+        this.healing = 2;
     }
     
     public int getWorth() {
         return worth;
+    }
+    
+    public int getHealing() {
+        return healing;
     }
 }

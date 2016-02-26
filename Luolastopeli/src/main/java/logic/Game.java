@@ -36,7 +36,6 @@ public class Game {
 
     public Game() {
         areaLoader = new AreaLoader();
-        areaGen = new AreaGenerator(20, 20);
         entityManager = new EntityManager();
         root = new Group();
         scene = new Scene(root);
