@@ -7,4 +7,5 @@ ke 3.2. 2,5h Uusia luokkia
 to 4.2. 1h ActorTest, AreaTest, Actorin twiikkausta  
 ke 10.2. 2,5h  
 ke 17.2. 2,5h StatusDisplay  
-pe 19.2 3h Testejä, JavaDocia, uusi luokkakaavio  
+pe 19.2. 3h Testejä, JavaDocia, uusi luokkakaavio  
+pe 26.2. 4h AreaGenerator, muutoksia taisteluun, lisää JavaDocia, käyttöohje  

@@ -5,7 +5,6 @@
  */
 package entities;
 
-import logic.Area;
 
 /**
  *Stores sprite position, type and file path to image.

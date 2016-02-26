@@ -6,7 +6,6 @@
 package logic;
 
 import entities.Actor;
-import entities.Sprite;
 import entities.SpriteEnum;
 import entities.Treasure;
 import javafx.scene.canvas.GraphicsContext;
