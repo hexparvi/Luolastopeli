@@ -49,23 +49,23 @@ public class Game {
      * @throws FileNotFoundException
      */
     public void init() throws FileNotFoundException {
-        File mapFile = new File("./src/main/resources/maps/testroom.txt");
-        areaLoader.load(mapFile);
-        
-//        areaGen.run();
-//        currentArea = new Area(areaGen.getTilemap(), areaGen.getEnemies());
-//        player = areaGen.getPlayer();
-        
-        currentArea = new Area(areaLoader.getMap(), areaLoader.getEnemies());
-        player = areaLoader.getPlayer();
+//        File mapFile = new File("./src/main/resources/maps/testroom.txt");
+//        areaLoader.load(mapFile);
+        areaGen = new AreaGenerator(20, 20);
+        areaGen.run();
+        currentArea = new Area(areaGen.getTilemap(), areaGen.getEnemies());
+        player = areaGen.getPlayer();
+
+//        currentArea = new Area(areaLoader.getMap(), areaLoader.getEnemies());
+//        player = areaLoader.getPlayer();
         display = new StatusDisplay(player);
         entityManager.setGame(this);
-        
+
         if (states.isEmpty()) {
             createStates();
         }
         setState(states.get("PLAY"));
-        
+
         changeArea();
     }
 
@@ -124,7 +124,7 @@ public class Game {
     public StatusDisplay getStatus() {
         return display;
     }
-    
+
     public HashMap<String, State> getStates() {
         return states;
     }

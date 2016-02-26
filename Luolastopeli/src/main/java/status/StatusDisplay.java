@@ -31,14 +31,14 @@ public class StatusDisplay {
 
     public void draw(GraphicsContext gc) {
         gc.setFill(Color.CRIMSON);
-        gc.fillRect(20, 30, player.getMaxHP() * 10, 10);
+        gc.fillRect(30, 50, player.getMaxHP() * 10, 10);
         gc.setFill(Color.RED);
-        gc.fillRect(20, 30, player.getCurrentHP() * 10, 10);
+        gc.fillRect(30, 50, player.getCurrentHP() * 10, 10);
         
         Font font = Font.font("Verdana", FontWeight.NORMAL, 12);
         gc.setFont(font);
         gc.setFill(Color.BLACK);
-        gc.fillText("Points: " + player.getPoints(), 200, 30);
+        gc.fillText("Points: " + player.getPoints(), 500, 50);
         
         drawMessages(gc);
     }
@@ -49,7 +49,7 @@ public class StatusDisplay {
         int counter = 0;
         while (li.hasPrevious()) {
             gc.setFill(Color.color(0, 0, 0, 1.0 * (Math.pow(0.80, counter))));
-            gc.fillText(li.previous(), 200, 300 - counter * 15);
+            gc.fillText(li.previous(), 400, 600 - counter * 15);
             counter++;
         }
     }

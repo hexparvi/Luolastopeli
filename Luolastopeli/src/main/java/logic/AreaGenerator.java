@@ -8,6 +8,7 @@ package logic;
 import entities.Enemy;
 import entities.Player;
 import entities.SpriteEnum;
+import entities.Treasure;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -24,18 +25,21 @@ public class AreaGenerator {
     private Tile[][] tilemap;
     private Player player;
     private ArrayList<Enemy> enemies;
-    private HashMap<Integer, ArrayList<Integer>> rooms;
+    private ArrayList<Treasure> items;
+    private ArrayList<Room> rooms;
 
     public AreaGenerator(int width, int length) {
         this.areaWidth = width;
         this.areaLength = length;
         this.tilemap = new Tile[width][length];
         enemies = new ArrayList<>();
+        items = new ArrayList<>();
+        rooms = new ArrayList<>();
     }
 
     public void run() {
         fillTilemap();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 30; i++) {
             generateRoom();
         }
     }
@@ -50,52 +54,49 @@ public class AreaGenerator {
 
     public void generateRoom() {
         Random random = new Random();
-        int roomWidth = 3 + random.nextInt(areaWidth / 3);
-        int roomLength = 3 + random.nextInt(areaLength / 3);
-        
-        System.out.println("---Generating room of width " + roomWidth + " and length " + roomLength);
+        int width = 3 + random.nextInt(areaWidth / 5);
+        int length = 3 + random.nextInt(areaLength / 5);
 
-        int x = random.nextInt(areaWidth - (areaWidth / 3));
-        int y = random.nextInt(areaLength - (areaLength / 3));
-        
-        System.out.println("Starting at tile " + x + ", " + y);
-        
-        if (true) return;
-        
-        ArrayList<Integer> tmp = new ArrayList<>();
-        tmp.add(roomWidth);
-        tmp.add(roomLength);
-        rooms.put((x + y) * 2, tmp);
+        int x = 1 + random.nextInt(areaWidth - (areaWidth / 5) - 1);
+        int y = 1 + random.nextInt(areaLength - (areaWidth / 5) - 1);
 
-        for (int i = x; i < x + roomWidth; i++) {
 
-//            if (i >= areaWidth) {
-//                System.out.println("i: " + i + ", areaWidth: " + areaWidth + " -> breaking!");
-//                break;
-//            }
+        Room tmp = new Room(x, y, width, length);
 
-            for (int j = y; j < y + roomLength; j++) {
+        for (Room room : rooms) {
+            if (tmp.intersects(room)) {
+                return;
+            }
+        }
 
-//                if (j >= areaLength) {
-//                    System.out.println("j: " + j + ", areaLength: " + areaLength + " -> breaking!");
-//                    break;
-//                }
+        rooms.add(tmp);
 
-                //System.out.println("changing tile " + i + ", " + j + " to floor");
+        for (int i = x; i < x + width; i++) {
 
+            if (i >= areaWidth - 1) {
+                break;
+            }
+            for (int j = y; j < y + length; j++) {
+
+                if (j >= areaLength - 1) {
+                    break;
+                }
                 tilemap[i][j] = new Tile(i, j, "FLOOR");
+                double number = Math.random();
 
                 if (player == null) {
                     player = new Player(i, j, SpriteEnum.PLAYER_SPRITE.getPath());
                     tilemap[i][j].setEntity(player);
 
-                } else {
+                } else if (number < 0.025 && !tilemap[i][j].hasEntity()) {
+                    Enemy enemy = new Enemy(i, j, SpriteEnum.ENEMY_SPRITE.getPath());
+                    tilemap[i][j].setEntity(enemy);
+                    enemies.add(enemy);
 
-                    if (Math.random() < 0.1) {
-                        Enemy enemy = new Enemy(i, j, SpriteEnum.ENEMY_SPRITE.getPath());
-                        tilemap[i][j].setEntity(enemy);
-                        enemies.add(enemy);
-                    }
+                } else if (number > 0.95 && !tilemap[i][j].hasItem()) {
+                    Treasure treasure = new Treasure(i, j, SpriteEnum.TREASURE_SPRITE.getPath());
+                    tilemap[i][j].setItem(treasure);
+                    items.add(treasure);
                 }
             }
         }
@@ -111,5 +112,9 @@ public class AreaGenerator {
 
     public ArrayList<Enemy> getEnemies() {
         return enemies;
+    }
+
+    public ArrayList<Treasure> getItems() {
+        return items;
     }
 }
