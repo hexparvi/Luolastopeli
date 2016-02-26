@@ -11,8 +11,8 @@ package entities;
  */
 public class Enemy extends Actor {
 
-    public Enemy(int x, int y, String imgPath) {
-        super(x, y, imgPath);
+    public Enemy(int x, int y) {
+        super(x, y, SpriteEnum.ENEMY_SPRITE.getPath());
         super.setMaxHP(5);
         super.setCurrentHP(5);
         super.setDmg(1);

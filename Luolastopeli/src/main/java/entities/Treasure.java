@@ -13,8 +13,8 @@ public class Treasure extends Sprite {
     private int worth;
     private int healing;
 
-    public Treasure(int x, int y, String imgPath) {
-        super(x, y, imgPath);
+    public Treasure(int x, int y) {
+        super(x, y, SpriteEnum.TREASURE_SPRITE.getPath());
         super.setType("TREASURE");
         this.worth = 5;
         this.healing = 2;

@@ -7,7 +7,6 @@ package logic;
 
 import entities.Enemy;
 import entities.Player;
-import entities.SpriteEnum;
 import entities.Treasure;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -66,18 +65,18 @@ public class AreaLoader {
      */
     private void checkTileContent(char c, int x, int y) {
         if (c == 'P') {
-            player = new Player(x, y, SpriteEnum.PLAYER_SPRITE.getPath());
+            player = new Player(x, y);
             map[x][y] = new Tile(x, y, "FLOOR");
             map[x][y].setEntity(player);
             
         } else if (c == 'E') {
-            Enemy enemy = new Enemy(x, y, SpriteEnum.ENEMY_SPRITE.getPath());
+            Enemy enemy = new Enemy(x, y);
             enemies.add(enemy);
             map[x][y] = new Tile(x, y, "FLOOR");
             map[x][y].setEntity(enemy);
             
         } else if (c == 'T') {
-            Treasure treasure = new Treasure(x, y, SpriteEnum.TREASURE_SPRITE.getPath());
+            Treasure treasure = new Treasure(x, y);
             treasures.add(treasure);
             map[x][y] = new Tile(x, y, "FLOOR");
             map[x][y].setItem(treasure);

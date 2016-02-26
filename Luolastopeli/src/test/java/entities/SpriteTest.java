@@ -45,7 +45,7 @@ public class SpriteTest {
         {new Tile(1, 0, "FLOOR"), new Tile(1, 1, "WALL"), new Tile(1, 2, "WALL")},
         {new Tile(2, 0, "FLOOR"), new Tile(2, 1, "FLOOR"), new Tile(2, 2, "FLOOR")}};
         area = new Area(tilemap, new ArrayList<Enemy>());
-        player = new Player(1, 0, "");
+        player = new Player(1, 0);
     }
 
     @After

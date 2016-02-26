@@ -13,8 +13,8 @@ package entities;
 public class Player extends Actor {
     private int points;
 
-    public Player(int x, int y, String imgPath) {
-        super(x, y, imgPath);
+    public Player(int x, int y) {
+        super(x, y, SpriteEnum.PLAYER_SPRITE.getPath());
         super.setMaxHP(10);
         super.setCurrentHP(10);
         super.setDmg(5);

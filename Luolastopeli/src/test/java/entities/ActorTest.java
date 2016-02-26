@@ -40,7 +40,7 @@ public class ActorTest {
 
     @Before
     public void setUp() throws FileNotFoundException {
-        actor = new Player(0, 0, "");
+        actor = new Player(0, 0);
         actor.setCurrentHP(10);
     }
 
