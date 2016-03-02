@@ -16,7 +16,8 @@ import javafx.scene.input.KeyEvent;
 import logic.Game;
 
 /**
- *Handles updating and drawing gameplay.
+ * Handles updating and drawing gameplay.
+ *
  * @author hexparvi
  */
 public class PlayState extends State {
@@ -33,14 +34,16 @@ public class PlayState extends State {
         super(game);
         hudCanvas = new Canvas(canvas.getWidth(), canvas.getHeight());
         hudGC = hudCanvas.getGraphicsContext2D();
-        group.getChildren().add(hudCanvas);
+
         playerMoved = false;
         input = "";
+        
         legalMoves = new ArrayList<>();
         legalMoves.add("UP");
         legalMoves.add("DOWN");
         legalMoves.add("LEFT");
         legalMoves.add("RIGHT");
+        
         restartHandler = new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
@@ -49,6 +52,7 @@ public class PlayState extends State {
                 }
             }
         };
+        
         moveHandler = new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
@@ -58,6 +62,8 @@ public class PlayState extends State {
                 }
             }
         };
+        
+        group.getChildren().add(hudCanvas);
     }
 
     @Override

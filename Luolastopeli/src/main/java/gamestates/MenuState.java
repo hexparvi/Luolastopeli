@@ -10,8 +10,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import logic.Game;
 
 /**
@@ -28,38 +28,49 @@ public class MenuState extends State {
 
     public MenuState(Game game) {
         super(game);
-        vbox = new VBox(5);
+        vbox = new VBox(35);
+        vbox.setPrefWidth(100);
         vbox.setLayoutX(255);
         vbox.setLayoutY(350);
+
         manBtn = new Button("How to Play");
+        manBtn.setMinWidth(vbox.getPrefWidth());
+        manBtn.setScaleX(2);
+        manBtn.setScaleY(2);
+        
         startBtn = new Button("Start Game");
-        manBtn.setPrefSize(200, 50);
+        startBtn.setMinWidth(vbox.getPrefWidth());
         startBtn.setScaleX(2);
         startBtn.setScaleY(2);
+        
         startHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 game.setState(game.getState("PLAY"));
             }
         };
+        
         manHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 game.setState(game.getState("MANUAL"));
             }
         };
-        vbox.getChildren().addAll(manBtn, startBtn);
+        
+        vbox.getChildren().addAll(startBtn, manBtn);
         group.getChildren().add(vbox);
     }
 
     @Override
     public void update() {
-        
+
     }
 
     @Override
     public void draw() {
-        
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
     @Override

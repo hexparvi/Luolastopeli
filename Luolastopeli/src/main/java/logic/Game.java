@@ -26,7 +26,6 @@ public class Game {
 
     private Player player;
     private Area currentArea;
-    private AreaLoader areaLoader;
     private AreaGenerator areaGen;
     private EntityManager entityManager;
     private StatusDisplay display;
@@ -36,7 +35,6 @@ public class Game {
     private HashMap<String, State> states;
 
     public Game() {
-        areaLoader = new AreaLoader();
         entityManager = new EntityManager();
         root = new Group();
         scene = new Scene(root);
@@ -152,10 +150,6 @@ public class Game {
 
     public StatusDisplay getStatus() {
         return display;
-    }
-
-    public HashMap<String, State> getStates() {
-        return states;
     }
 
     public State getState(String statename) {

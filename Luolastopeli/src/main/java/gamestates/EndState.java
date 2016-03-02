@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -39,9 +40,21 @@ public class EndState extends State {
 
     public EndState(Game game) {
         super(game);
-        vbox = new VBox();
+        vbox = new VBox(35);
+        vbox.setPrefWidth(130);
+        vbox.setLayoutX(255);
+        vbox.setLayoutY(400);
+        
         restartBtn = new Button("Restart");
+        restartBtn.setMinWidth(vbox.getPrefWidth());
+        restartBtn.setScaleX(2);
+        restartBtn.setScaleY(2);
+        
         menuBtn = new Button("Back to menu");
+        menuBtn.setMinWidth(vbox.getPrefWidth());
+        menuBtn.setScaleX(2);
+        menuBtn.setScaleY(2);
+        
         restartKeyHandler = new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
@@ -50,20 +63,24 @@ public class EndState extends State {
                 }
             }
         };
+        
         restartHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 game.restart();
-            }  
+            }
         };
+        
         menuHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 game.init();
             }
         };
+        
         restartBtn.setOnAction(restartHandler);
         menuBtn.setOnAction(menuHandler);
+        
         vbox.getChildren().addAll(restartBtn, menuBtn);
         group.getChildren().add(vbox);
     }
@@ -88,10 +105,6 @@ public class EndState extends State {
             gc.setFill(Color.CHARTREUSE);
             gc.fillText("You Win!", canvas.getWidth() / 2, canvas.getHeight() / 2);
         }
-
-        font = Font.font("Verdana", FontWeight.BOLD, 24);
-        gc.setFont(font);
-        gc.fillText("\nPress R to restart.", canvas.getWidth() / 2, canvas.getHeight() / 2);
     }
 
     @Override
