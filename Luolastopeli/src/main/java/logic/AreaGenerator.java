@@ -35,7 +35,7 @@ public class AreaGenerator {
         enemies = new ArrayList<>();
         items = new ArrayList<>();
         prevCells = new boolean[width][height];
-        chanceToStartAlive = 0.4;
+        chanceToStartAlive = 0.5;
     }
     
     /**
@@ -157,8 +157,8 @@ public class AreaGenerator {
 
     /**
      * Counts the number of living neighbors for cell at position x, y.
-     * @param x
-     * @param y
+     * @param x x-coordinate of center cell
+     * @param y y-coordinate of center cell
      * @return number of living neighbors
      */
     public int countAliveNeighbors(int x, int y) {

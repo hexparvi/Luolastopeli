@@ -98,7 +98,7 @@ abstract public class Actor extends Sprite {
 
     /**
      * Attacks target.
-     * @param target
+     * @param target target of attack
      * @return true if target died, false otherwise
      */
     public boolean attack(Actor target) {
@@ -107,7 +107,7 @@ abstract public class Actor extends Sprite {
 
     /**
      * Checks if caller is next to entity horizontally or vertically.
-     * @param entity
+     * @param entity entity to be checked
      * @return true if caller is next to entity, false otherwise
      */
     public boolean isNextTo(Sprite entity) {

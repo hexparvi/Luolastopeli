@@ -52,7 +52,7 @@ public class Room {
     
     /**
      * Checks if two rooms intersect each other.
-     * @param room
+     * @param room room to be checked
      * @return true if rooms intersect, false otherwise
      */
     public boolean intersects(Room room) {

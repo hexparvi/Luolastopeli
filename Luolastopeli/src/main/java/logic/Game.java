@@ -8,17 +8,18 @@ package logic;
 import entities.EntityManager;
 import entities.Player;
 import gamestates.EndState;
+import gamestates.ManState;
+import gamestates.MenuState;
 import gamestates.PlayState;
 import gamestates.State;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import status.StatusDisplay;
 
 /**
- *Handles gameplay.
+ * Handles gameplay.
+ *
  * @author hexparvi
  */
 public class Game {
@@ -43,16 +44,10 @@ public class Game {
     }
 
     /**
-     * Initializes currentArea, game state, player and entityManager.
+     * Initializes currentArea, game state, player and entityManager. Sets currentState to menu.
      *
-     * @throws FileNotFoundException
      */
-    public void init() throws FileNotFoundException {
-//        File mapFile = new File("./src/main/resources/maps/testroom.txt");
-//        areaLoader.load(mapFile);
-//        currentArea = new Area(areaLoader.getMap(), areaLoader.getEnemies());
-//        player = areaLoader.getPlayer();
-        
+    public void init() {
         areaGen = new AreaGenerator(20, 20);
         areaGen.run();
         currentArea = new Area(areaGen.getTilemap(), areaGen.getEnemies());
@@ -64,7 +59,22 @@ public class Game {
         if (states.isEmpty()) {
             createStates();
         }
-        setState(states.get("PLAY"));
+        setState(getState("MENU"));
+
+        changeArea();
+    }
+    
+    /**
+     * Generates a new Area. Sets currentState to play.
+     */
+    public void restart() {
+        areaGen = new AreaGenerator(20, 20);
+        areaGen.run();
+        currentArea = new Area(areaGen.getTilemap(), areaGen.getEnemies());
+        player = areaGen.getPlayer();
+
+        display = new StatusDisplay(player);
+        setState(getState("PLAY"));
 
         changeArea();
     }
@@ -73,6 +83,8 @@ public class Game {
      * Creates possible game states and puts them on a list.
      */
     private void createStates() {
+        states.put("MENU", new MenuState(this));
+        states.put("MANUAL", new ManState(this));
         states.put("PLAY", new PlayState(this));
         states.put("END", new EndState(this));
     }
@@ -88,9 +100,13 @@ public class Game {
 
     /**
      * Removes previous state and sets a new one.
+     *
      * @param state new State
      */
     public void setState(State state) {
+        if (state == null) {
+            return;
+        }
         if (currentState != null) {
             currentState.removeHandlers(scene);
         }
@@ -106,7 +122,7 @@ public class Game {
     public void updateState() {
         currentState.update();
     }
-    
+
     /**
      * Draw game state.
      */
@@ -140,6 +156,10 @@ public class Game {
 
     public HashMap<String, State> getStates() {
         return states;
+    }
+
+    public State getState(String statename) {
+        return states.get(statename);
     }
 
 }

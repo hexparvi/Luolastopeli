@@ -44,8 +44,8 @@ public class AreaLoader {
     /**
      * Fills map-array with Tiles.
      *
-     * @param mapfile
-     * @throws java.io.FileNotFoundException
+     * @param mapfile File object of .txt map
+     * @throws java.io.FileNotFoundException if mapfile is not found
      */
     public void load(File mapfile) throws FileNotFoundException {
         scanner = new Scanner(mapfile);

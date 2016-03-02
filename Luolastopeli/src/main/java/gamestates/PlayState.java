@@ -11,6 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import logic.Game;
 
@@ -25,6 +26,7 @@ public class PlayState extends State {
     private String input;
     private boolean playerMoved;
     private EventHandler<KeyEvent> moveHandler;
+    private EventHandler<KeyEvent> restartHandler;
     private ArrayList<String> legalMoves;
 
     public PlayState(Game game) {
@@ -39,6 +41,14 @@ public class PlayState extends State {
         legalMoves.add("DOWN");
         legalMoves.add("LEFT");
         legalMoves.add("RIGHT");
+        restartHandler = new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+                if (e.getCode() == KeyCode.R) {
+                    game.restart();
+                }
+            }
+        };
         moveHandler = new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
@@ -53,6 +63,7 @@ public class PlayState extends State {
     @Override
     public void setHandlers(Scene scene) {
         scene.setOnKeyReleased(moveHandler);
+        scene.setOnKeyPressed(restartHandler);
     }
 
     @Override
@@ -63,10 +74,10 @@ public class PlayState extends State {
             playerMoved = false;
         }
         if (game.getPlayer().getCurrentHP() == 0) {
-            game.setState(game.getStates().get("END"));
+            game.setState(game.getState("END"));
         }
         if (game.getArea().getEnemies().isEmpty()) {
-            game.setState(game.getStates().get("END"));
+            game.setState(game.getState("END"));
 
         }
     }
