@@ -5,6 +5,7 @@
  */
 package entities;
 
+import java.io.InputStream;
 import javafx.scene.image.Image;
 
 /**
@@ -13,11 +14,11 @@ import javafx.scene.image.Image;
  */
 public enum SpriteEnum {
 
-    PLAYER_SPRITE("file:./src/main/resources/images/playerplaceholder.png"),
-    ENEMY_SPRITE("file:./src/main/resources/images/enemyplaceholder.png"),
-    FLOOR_SPRITE("file:./src/main/resources/images/floorplaceholder.png"),
-    WALL_SPRITE("file:./src/main/resources/images/wallplaceholder.png"),
-    TREASURE_SPRITE("file:./src/main/resources/images/treasureplaceholder.png");
+    PLAYER_SPRITE("images/playerplaceholder.png"),
+    ENEMY_SPRITE("images/enemyplaceholder.png"),
+    FLOOR_SPRITE("images/floorplaceholder.png"),
+    WALL_SPRITE("images/wallplaceholder.png"),
+    TREASURE_SPRITE("images/treasureplaceholder.png");
 
     private String imagePath;
     private Image image;
