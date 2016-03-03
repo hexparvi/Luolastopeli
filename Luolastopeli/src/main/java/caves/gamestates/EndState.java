@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gamestates;
+package caves.gamestates;
 
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -21,7 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
-import logic.Game;
+import caves.logic.Game;
 
 /**
  * Handles updating and drawing game over-screen.

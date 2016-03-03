@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logic;
+package caves.logic;
 
-import entities.EntityManager;
-import entities.Player;
-import gamestates.EndState;
-import gamestates.ManState;
-import gamestates.MenuState;
-import gamestates.PlayState;
-import gamestates.State;
+import caves.entities.EntityManager;
+import caves.entities.Player;
+import caves.gamestates.EndState;
+import caves.gamestates.ManState;
+import caves.gamestates.MenuState;
+import caves.gamestates.PlayState;
+import caves.gamestates.State;
 import java.util.HashMap;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import status.StatusDisplay;
+import caves.status.StatusDisplay;
 
 /**
  * Handles gameplay.

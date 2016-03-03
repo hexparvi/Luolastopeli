@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package entities;
+package caves.entities;
 
 /**
  *Handles player healing and point collection.

@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package caves.entities;
 
+import caves.entities.Enemy;
+import caves.entities.Player;
 import java.util.ArrayList;
-import logic.Area;
-import logic.Tile;
+import caves.logic.Area;
+import caves.logic.Tile;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;

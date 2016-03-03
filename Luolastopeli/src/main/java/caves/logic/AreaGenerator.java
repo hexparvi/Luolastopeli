@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logic;
+package caves.logic;
 
-import entities.Enemy;
-import entities.Player;
-import entities.Treasure;
+import caves.entities.Enemy;
+import caves.entities.Player;
+import caves.entities.Treasure;
 import java.util.ArrayList;
 import java.util.Random;
 

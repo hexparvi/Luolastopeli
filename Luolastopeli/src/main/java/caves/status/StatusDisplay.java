@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package status;
+package caves.status;
 
-import entities.Actor;
-import entities.Player;
+import caves.entities.Actor;
+import caves.entities.Player;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import javafx.scene.canvas.GraphicsContext;

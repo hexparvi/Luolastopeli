@@ -3,25 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package caves.logic;
 
-package entities;
-
-import entities.EntityManager;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author hexparvi
  */
-public class EntityManagerTest {
-    EntityManager manager;
+public class TileTest {
     
-    public EntityManagerTest() {
+    public TileTest() {
     }
     
     @BeforeClass
@@ -34,16 +31,11 @@ public class EntityManagerTest {
     
     @Before
     public void setUp() {
-        manager = new EntityManager();
     }
     
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
 }

@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 
-package logic;
+package caves.logic;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import logic.Area;
-import logic.Tile;
-import entities.Enemy;
+import caves.logic.Area;
+import caves.logic.Tile;
+import caves.entities.Enemy;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;

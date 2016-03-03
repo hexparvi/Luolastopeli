@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package caves.entities;
 
 /**
  *Stores points and healing gained from collecting treasure.

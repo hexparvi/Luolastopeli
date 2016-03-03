@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gamestates;
+package caves.gamestates;
 
-import entities.SpriteEnum;
+import caves.entities.SpriteEnum;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
-import logic.Game;
+import caves.logic.Game;
 
 /**
  *

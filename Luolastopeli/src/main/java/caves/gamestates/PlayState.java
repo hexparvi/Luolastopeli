@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gamestates;
+package caves.gamestates;
 
 import java.util.ArrayList;
 import javafx.event.EventHandler;
@@ -13,7 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import logic.Game;
+import caves.logic.Game;
 
 /**
  * Handles updating and drawing gameplay.

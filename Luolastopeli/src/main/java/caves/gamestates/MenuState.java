@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gamestates;
+package caves.gamestates;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import logic.Game;
+import caves.logic.Game;
 
 /**
  *
