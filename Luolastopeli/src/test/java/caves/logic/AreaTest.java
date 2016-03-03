@@ -6,11 +6,7 @@
 
 package caves.logic;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
-import caves.logic.Area;
-import caves.logic.Tile;
 import caves.entities.Enemy;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -39,9 +35,10 @@ public class AreaTest {
     }
     
     @Before
-    public void setUp() throws FileNotFoundException {
+    public void setUp() {
         Tile[][] tilemap = {{new Tile(0, 0, "FLOOR"), new Tile(0, 1, "FLOOR")},
-        {new Tile(1, 0, "WALL"), new Tile(1, 1, "WALL")}};
+        {new Tile(1, 0, "FLOOR"), new Tile(1, 1, "WALL")}};
+        tilemap[1][0].setEntity(new Enemy(1, 0));
         area = new Area(tilemap, new ArrayList<Enemy>());
     }
     
@@ -62,5 +59,26 @@ public class AreaTest {
     @Test
     public void isWalkableReturnsFalseOutsideOfBoundaries() {
         assertFalse(area.isWalkable(-1, -1));
+    }
+    
+    @Test
+    public void isWalkableReturnsFalseReturnsFalseOnEntities() {
+        assertFalse(area.isWalkable(1, 0));
+    }
+    
+    @Test
+    public void containsEntityReturnsTrueOnEntity() {
+        assertTrue(area.containsEntity(1, 0));
+    }
+    
+    @Test
+    public void containsEntityReturnsFalseWhenNoEntity() {
+        assertFalse(area.containsEntity(1, 1));
+    }
+    
+    @Test
+    public void removeEntityRemovesEntity() {
+        area.removeEntityFromPos(1, 0);
+        assertFalse(area.containsEntity(1, 0));
     }
 }

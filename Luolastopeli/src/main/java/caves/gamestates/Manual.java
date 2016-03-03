@@ -21,13 +21,13 @@ import caves.logic.Game;
  *
  * @author hexparvi
  */
-public class ManState extends State {
+public class Manual extends State {
 
     private VBox vbox;
     private Button backBtn;
     private EventHandler<ActionEvent> backHandler;
 
-    public ManState(Game game) {
+    public Manual(Game game) {
         super(game);
         vbox = new VBox();
         vbox.setLayoutX(255);

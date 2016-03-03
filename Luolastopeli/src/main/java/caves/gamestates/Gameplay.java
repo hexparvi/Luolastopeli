@@ -20,7 +20,7 @@ import caves.logic.Game;
  *
  * @author hexparvi
  */
-public class PlayState extends State {
+public class Gameplay extends State {
 
     private Canvas hudCanvas;
     private GraphicsContext hudGC;
@@ -30,7 +30,7 @@ public class PlayState extends State {
     private EventHandler<KeyEvent> restartHandler;
     private ArrayList<String> legalMoves;
 
-    public PlayState(Game game) {
+    public Gameplay(Game game) {
         super(game);
         hudCanvas = new Canvas(canvas.getWidth(), canvas.getHeight());
         hudGC = hudCanvas.getGraphicsContext2D();

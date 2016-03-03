@@ -56,6 +56,6 @@ public class PlayerTest {
     @Test
     public void negativeHealDoesntDoAnything() {
         player.heal(-5);
-        assertEquals(10, player.getCurrentHP());
+        assertEquals(5, player.getCurrentHP());
     }
 }

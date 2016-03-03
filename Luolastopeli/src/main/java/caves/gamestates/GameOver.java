@@ -24,7 +24,7 @@ import caves.logic.Game;
  *
  * @author hexparvi
  */
-public class EndState extends State {
+public class GameOver extends State {
 
     private EventHandler<KeyEvent> restartKeyHandler;
     private EventHandler<ActionEvent> restartHandler;
@@ -34,7 +34,7 @@ public class EndState extends State {
     private Button menuBtn;
     private VBox vbox;
 
-    public EndState(Game game) {
+    public GameOver(Game game) {
         super(game);
         vbox = new VBox(35);
         vbox.setPrefWidth(130);

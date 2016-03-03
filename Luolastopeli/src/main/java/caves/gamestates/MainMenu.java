@@ -18,7 +18,7 @@ import caves.logic.Game;
  *
  * @author hexparvi
  */
-public class MenuState extends State {
+public class MainMenu extends State {
 
     private VBox vbox;
     private EventHandler<ActionEvent> startHandler;
@@ -26,7 +26,7 @@ public class MenuState extends State {
     private Button manBtn;
     private Button startBtn;
 
-    public MenuState(Game game) {
+    public MainMenu(Game game) {
         super(game);
         vbox = new VBox(35);
         vbox.setPrefWidth(100);

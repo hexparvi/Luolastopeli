@@ -7,10 +7,10 @@ package caves.logic;
 
 import caves.entities.EntityManager;
 import caves.entities.Player;
-import caves.gamestates.EndState;
-import caves.gamestates.ManState;
-import caves.gamestates.MenuState;
-import caves.gamestates.PlayState;
+import caves.gamestates.GameOver;
+import caves.gamestates.Manual;
+import caves.gamestates.MainMenu;
+import caves.gamestates.Gameplay;
 import caves.gamestates.State;
 import java.util.HashMap;
 import javafx.scene.Group;
@@ -81,10 +81,10 @@ public class Game {
      * Creates possible game states and puts them on a list.
      */
     private void createStates() {
-        states.put("MENU", new MenuState(this));
-        states.put("MANUAL", new ManState(this));
-        states.put("PLAY", new PlayState(this));
-        states.put("END", new EndState(this));
+        states.put("MENU", new MainMenu(this));
+        states.put("MANUAL", new Manual(this));
+        states.put("PLAY", new Gameplay(this));
+        states.put("END", new GameOver(this));
     }
 
     /**
