@@ -31,6 +31,9 @@ public class Player extends Actor {
      * @param amount amount of HP to be healed
      */
     public void heal(int amount) {
+        if (amount < 0) {
+            return;
+        }
         if (getCurrentHP() + amount <= getMaxHP()) {
             setCurrentHP(getCurrentHP() + amount);
         } else {

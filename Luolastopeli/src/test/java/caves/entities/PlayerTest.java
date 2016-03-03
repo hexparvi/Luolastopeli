@@ -5,7 +5,6 @@
  */
 package caves.entities;
 
-import caves.entities.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,6 +50,12 @@ public class PlayerTest {
     @Test
     public void healDoesntOverheal() {
         player.heal(8);
+        assertEquals(10, player.getCurrentHP());
+    }
+    
+    @Test
+    public void negativeHealDoesntDoAnything() {
+        player.heal(-5);
         assertEquals(10, player.getCurrentHP());
     }
 }

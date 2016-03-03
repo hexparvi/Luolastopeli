@@ -87,6 +87,9 @@ abstract public class Actor extends Sprite {
      * @return true if caller died, false otherwise
      */
     public boolean takeDmg(int dmgTaken) {
+        if (dmgTaken < 0) {
+            return false;
+        }
         if (dmgTaken > currentHP) {
             currentHP = 0;
             return true;

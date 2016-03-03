@@ -84,30 +84,6 @@ public class EntityManager {
         }
     }
 
-    /**
-     * Gets entities located in neighboring tiles.
-     *
-     * @param x x-coordinate of the tile
-     * @param y y-coordinate of the tile
-     * @return list of neighboring Sprites
-     */
-    private ArrayList<Actor> getNeighbors(int x, int y) {
-        ArrayList<Actor> neighbors = new ArrayList<>();
-        if (area.containsEntity(x - 1, y)) {
-            neighbors.add(area.getEntityFromPos(x - 1, y));
-        }
-        if (area.containsEntity(x + 1, y)) {
-            neighbors.add(area.getEntityFromPos(x + 1, y));
-        }
-        if (area.containsEntity(x, y - 1)) {
-            neighbors.add(area.getEntityFromPos(x, y - 1));
-        }
-        if (area.containsEntity(x, y + 1)) {
-            neighbors.add(area.getEntityFromPos(x, y + 1));
-        }
-        return neighbors;
-    }
-
     public void setGame(Game newGame) {
         game = newGame;
     }

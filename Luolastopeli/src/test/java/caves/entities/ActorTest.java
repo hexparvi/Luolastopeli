@@ -24,6 +24,8 @@ import org.junit.Test;
 public class ActorTest {
 
     Player actor;
+    Enemy neighbor;
+    Enemy notNeighbor;
     Area area;
 
     public ActorTest() {
@@ -40,6 +42,7 @@ public class ActorTest {
     @Before
     public void setUp() {
         actor = new Player(0, 0);
+        actor.setMaxHP(10);
         actor.setCurrentHP(10);
         Tile[][] tilemap = new Tile[3][3];
         
@@ -49,8 +52,12 @@ public class ActorTest {
             }
         }
         
-        tilemap[1][0] = new Tile(0, 1, "WALL");
-        tilemap[1][1].setEntity(new Enemy(1, 1));
+        tilemap[1][1] = new Tile(1, 1, "WALL");
+        
+        neighbor = new Enemy(1, 0);
+        notNeighbor = new Enemy(5, 5);
+        
+        tilemap[1][0].setEntity(neighbor);
         
         area = new Area(tilemap, new ArrayList<>());
     }
@@ -72,6 +79,12 @@ public class ActorTest {
     }
     
     @Test
+    public void negativeDmgTakenDoesntDoAnything() {
+        actor.takeDmg(-5);
+        assertEquals(10, actor.getCurrentHP());
+    }
+    
+    @Test
     public void moveChangesXY() {
         actor.move("DOWN", area);
         assertEquals(0, actor.getX());
@@ -79,17 +92,34 @@ public class ActorTest {
     }
     
     @Test
-    public void cantWalkOnWalls() {
+    public void cantWalkOnEnemies() {
         actor.move("RIGHT", area);
         assertEquals(0, actor.getX());
         assertEquals(0, actor.getY());
     }
     
     @Test
-    public void cantWalkOnEnemies() {
+    public void cantWalkOnWalls() {
         actor.move("DOWN", area);
         actor.move("RIGHT", area);
         assertEquals(0, actor.getX());
         assertEquals(1, actor.getY());
+    }
+    
+    @Test
+    public void cantMoveOutsideOfBounds() {
+        actor.move("UP", area);
+        assertEquals(0, actor.getX());
+        assertEquals(0, actor.getY());
+    }
+    
+    @Test
+    public void isNextToRecognizesNeighbors() {
+        assertTrue(actor.isNextTo(neighbor));
+    }
+    
+    @Test
+    public void isNextToReturnsFalseWhenEntityIsNotANeighbor() {
+        assertFalse(actor.isNextTo(notNeighbor));
     }
 }
