@@ -35,7 +35,7 @@ public class AreaGenerator {
         enemies = new ArrayList<>();
         items = new ArrayList<>();
         prevCells = new boolean[width][height];
-        chanceToStartAlive = 0.5;
+        chanceToStartAlive = 0.45;
     }
     
     /**
@@ -43,12 +43,12 @@ public class AreaGenerator {
      */
     public void run() {
         initCells();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             simulateStep();
         }
-        for (int j = 0; j < 3; j++) {
-            closeIsolatedAreas();
-        }
+//        for (int j = 0; j < 4; j++) {
+//            closeIsolatedAreas();
+//        }
         fillWithTiles();
     }
 
@@ -69,7 +69,7 @@ public class AreaGenerator {
                         player = new Player(x, y);
                         tilemap[x][y].setEntity(player);
 
-                    } else if (number < 0.075) {
+                    } else if (number < 0.06) {
                         Enemy enemy = new Enemy(x, y);
                         enemies.add(enemy);
                         tilemap[x][y].setEntity(enemy);
@@ -106,15 +106,26 @@ public class AreaGenerator {
      */
     public void closeIsolatedAreas() {
         nextCells = new boolean[areaWidth][areaHeight];
-        int deathLimit = 3;
+        int turnToFloor = 5;
+        int stayAsFloor = 4;
 
         for (int x = 1; x < areaWidth - 1; x++) {
             for (int y = 1; y < areaHeight - 1; y++) {
                 int nbs = countAliveNeighbors(x, y);
-                if (nbs <= deathLimit) {
-                    nextCells[x][y] = false;
+                
+                if (prevCells[x][y]) {
+                    if (nbs >= stayAsFloor) {
+                        nextCells[x][y] = true;
+                    } else {
+                        nextCells[x][y] = false;
+                    }
+                    
                 } else {
-                    nextCells[x][y] = prevCells[x][y];
+                    if (nbs >= turnToFloor) {
+                        nextCells[x][y] = true;
+                    } else {
+                        nextCells[x][y] = false;
+                    }
                 }
             }
         }
@@ -127,26 +138,17 @@ public class AreaGenerator {
      */
     public void simulateStep() {
         nextCells = new boolean[areaWidth][areaHeight];
-        int deathLimit = 3;
-        int birthLimit = 3;
+        int turnToFloor = 5;
+        int stayAsFloor = 4;
 
         for (int x = 1; x < areaWidth - 1; x++) {
             for (int y = 1; y < areaHeight - 1; y++) {
                 int nbs = countAliveNeighbors(x, y);
-                if (prevCells[x][y]) {
-                    if (nbs <= deathLimit) {
-                        nextCells[x][y] = false;
-                    } else if (nbs == 8) {
-                        nextCells[x][y] = false;
-                    } else {
-                        nextCells[x][y] = true;
-                    }
+                
+                if (nbs == 8 || nbs < 4) {
+                    nextCells[x][y] = false;
                 } else {
-                    if (nbs > birthLimit) {
-                        nextCells[x][y] = true;
-                    } else {
-                        nextCells[x][y] = false;
-                    }
+                    nextCells[x][y] = true;
                 }
             }
         }

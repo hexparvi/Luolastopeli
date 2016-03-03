@@ -9,3 +9,5 @@ ke 10.2. 2,5h
 ke 17.2. 2,5h StatusDisplay  
 pe 19.2. 3h Testejä, JavaDocia, uusi luokkakaavio  
 pe 26.2. 4h AreaGenerator, muutoksia taisteluun, lisää JavaDocia, käyttöohje  
+ti 1.3. 2h Päävalikko ym.  
+ke 2.3. 2h Säätöä ulkoasun kanssa, käyttöohje päävalikkoon  
