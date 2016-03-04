@@ -39,11 +39,8 @@ public class Manual extends State {
         backBtn.setScaleX(2);
         backBtn.setScaleY(2);
 
-        backHandler = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                game.setState(game.getState("MENU"));
-            }
+        backHandler = (ActionEvent e) -> {
+            game.setState(game.getState("MENU"));
         };
 
         backBtn.setOnAction(backHandler);

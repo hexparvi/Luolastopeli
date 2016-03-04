@@ -19,10 +19,6 @@ public class Enemy extends Actor {
         super.setType("ENEMY");
     }
 
-    @Override
-    public void act() {
-    }
-
     /**
      * Selects direction based on target coordinates.
      *

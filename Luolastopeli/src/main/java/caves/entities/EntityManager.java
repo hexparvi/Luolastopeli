@@ -10,7 +10,8 @@ import caves.logic.Area;
 import caves.logic.Game;
 
 /**
- *Handles entity movement and status changes.
+ * Handles entity movement and status changes.
+ *
  * @author hexparvi
  */
 public class EntityManager {
@@ -32,6 +33,7 @@ public class EntityManager {
                 enemy.attack(player);
                 game.getStatus().statusMessage(enemy, player);
             }
+            
             String direction = enemy.findDirection(player.getX(), player.getY());
             enemy.move(direction, area);
         }
@@ -44,12 +46,8 @@ public class EntityManager {
      */
     public void updatePlayer(String input) {
         player.move(input, area);
-
         if (area.containsItem(player.getX(), player.getY())) {
-            Treasure item = area.getItemFromPos(player.getX(), player.getY());
-            player.increasePoints(item.getWorth());
-            player.heal(item.getHealing());
-            area.removeItemFromPos(player.getX(), player.getY());
+            pickUpItem();
         }
 
         int frontX = player.getX();
@@ -71,15 +69,26 @@ public class EntityManager {
         }
 
         if (area.containsEntity(frontX, frontY)) {
-            Actor target = area.getEntityFromPos(frontX, frontY);
-            if (target.getType().equals("ENEMY")) {
-                boolean targetDied = player.attack(target);
-                game.getStatus().statusMessage(player, target);
+            attack(frontX, frontY);
+        }
+    }
 
-                if (targetDied) {
-                    area.removeEntityFromPos(target.getX(), target.getY());
-                    enemies.remove(target);
-                }
+    private void pickUpItem() {
+        Treasure item = area.getItemFromPos(player.getX(), player.getY());
+        player.increasePoints(item.getWorth());
+        player.heal(item.getHealing());
+        area.removeItemFromPos(player.getX(), player.getY());
+    }
+
+    private void attack(int x, int y) {
+        Actor target = area.getEntityFromPos(x, y);
+        if (target.getType().equals("ENEMY")) {
+            boolean targetDied = player.attack(target);
+            game.getStatus().statusMessage(player, target);
+
+            if (targetDied) {
+                area.removeEntityFromPos(target.getX(), target.getY());
+                enemies.remove(target);
             }
         }
     }

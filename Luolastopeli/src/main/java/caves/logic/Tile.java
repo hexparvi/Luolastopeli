@@ -45,6 +45,9 @@ public class Tile {
         return entity;
     }
 
+    /**
+     * Sets entity to null.
+     */
     public void removeEntity() {
         entity = null;
     }
@@ -65,6 +68,9 @@ public class Tile {
         return item;
     }
 
+    /**
+     * Sets item to null.
+     */
     public void removeItem() {
         this.item = null;
     }

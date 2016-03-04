@@ -6,7 +6,6 @@
 
 package caves.entities;
 
-import caves.entities.EntityManager;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -41,9 +40,5 @@ public class EntityManagerTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
 }

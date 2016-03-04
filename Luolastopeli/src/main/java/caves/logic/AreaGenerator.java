@@ -41,7 +41,7 @@ public class AreaGenerator {
     /**
      * Runs the area generator.
      */
-    public void run() {
+    public void generate() {
         initCells();
         for (int i = 0; i < 6; i++) {
             simulateStep();
@@ -55,7 +55,7 @@ public class AreaGenerator {
     /**
      * Fills tilemap with tiles based on boolean values in nextCells.
      */
-    public void fillWithTiles() {
+    private void fillWithTiles() {
         Random random = new Random();
 
         for (int x = 0; x < areaWidth; x++) {
@@ -90,7 +90,7 @@ public class AreaGenerator {
     /**
      * Initializes prevCells with random boolean values.
      */
-    public void initCells() {
+    private void initCells() {
         Random random = new Random();
         for (int x = 0; x < areaWidth; x++) {
             for (int y = 0; y < areaHeight; y++) {
@@ -104,7 +104,7 @@ public class AreaGenerator {
     /**
      * Fills in unconnected areas in nextCells.
      */
-    public void closeIsolatedAreas() {
+    private void closeIsolatedAreas() {
         nextCells = new boolean[areaWidth][areaHeight];
         int turnToFloor = 5;
         int stayAsFloor = 4;
@@ -136,7 +136,7 @@ public class AreaGenerator {
     /**
      * Simulates one turn of game of life.
      */
-    public void simulateStep() {
+    private void simulateStep() {
         nextCells = new boolean[areaWidth][areaHeight];
         int turnToFloor = 5;
         int stayAsFloor = 4;
@@ -163,7 +163,7 @@ public class AreaGenerator {
      * @param y y-coordinate of center cell
      * @return number of living neighbors
      */
-    public int countAliveNeighbors(int x, int y) {
+    private int countAliveNeighbors(int x, int y) {
         int aliveNeighbors = 0;
 
         for (int i = -1; i < 2; i++) {

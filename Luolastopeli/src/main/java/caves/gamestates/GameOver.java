@@ -51,27 +51,18 @@ public class GameOver extends State {
         menuBtn.setScaleX(2);
         menuBtn.setScaleY(2);
         
-        restartKeyHandler = new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent e) {
-                if (e.getCode() == KeyCode.R) {
-                    game.restart();
-                }
-            }
-        };
-        
-        restartHandler = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
+        restartKeyHandler = (KeyEvent e) -> {
+            if (e.getCode() == KeyCode.R) {
                 game.restart();
             }
         };
         
-        menuHandler = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                game.init();
-            }
+        restartHandler = (ActionEvent e) -> {
+            game.restart();
+        };
+        
+        menuHandler = (ActionEvent e) -> {
+            game.init();
         };
         
         restartBtn.setOnAction(restartHandler);

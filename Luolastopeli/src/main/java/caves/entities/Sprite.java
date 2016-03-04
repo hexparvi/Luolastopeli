@@ -22,10 +22,6 @@ abstract public class Sprite {
         this.y = y;
     }
     
-    public void act() {
-        
-    }
-    
     public int getX() {
         return x;
     }

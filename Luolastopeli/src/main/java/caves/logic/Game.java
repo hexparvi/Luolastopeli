@@ -7,11 +7,7 @@ package caves.logic;
 
 import caves.entities.EntityManager;
 import caves.entities.Player;
-import caves.gamestates.GameOver;
-import caves.gamestates.Manual;
-import caves.gamestates.MainMenu;
-import caves.gamestates.Gameplay;
-import caves.gamestates.State;
+import caves.gamestates.*;
 import java.util.HashMap;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -26,7 +22,6 @@ public class Game {
 
     private Player player;
     private Area currentArea;
-    private AreaGenerator areaGen;
     private EntityManager entityManager;
     private StatusDisplay display;
     private State currentState;
@@ -42,14 +37,13 @@ public class Game {
     }
 
     /**
-     * Initializes currentArea, game state, player and entityManager. Sets currentState to menu.
+     * Initializes currentArea, game state, player and entityManager. Sets
+     * currentState to menu.
      *
      */
     public void init() {
-        areaGen = new AreaGenerator(20, 20);
-        areaGen.run();
-        currentArea = new Area(areaGen.getTilemap(), areaGen.getEnemies());
-        player = areaGen.getPlayer();
+        generateNewArea();
+        changeArea();
 
         display = new StatusDisplay(player);
         entityManager.setGame(this);
@@ -58,23 +52,14 @@ public class Game {
             createStates();
         }
         setState(getState("MENU"));
-
-        changeArea();
     }
-    
+
     /**
      * Generates a new Area. Sets currentState to play.
      */
     public void restart() {
-        areaGen = new AreaGenerator(20, 20);
-        areaGen.run();
-        currentArea = new Area(areaGen.getTilemap(), areaGen.getEnemies());
-        player = areaGen.getPlayer();
-
-        display = new StatusDisplay(player);
+        init();
         setState(getState("PLAY"));
-
-        changeArea();
     }
 
     /**
@@ -87,10 +72,17 @@ public class Game {
         states.put("END", new GameOver(this));
     }
 
+    private void generateNewArea() {
+        AreaGenerator areaGen = new AreaGenerator(20, 20);
+        areaGen.generate();
+        currentArea = new Area(areaGen.getTilemap(), areaGen.getEnemies());
+        player = areaGen.getPlayer();
+    }
+
     /**
      * Changes current area and entities for entityManager.
      */
-    public void changeArea() {
+    private void changeArea() {
         entityManager.setArea(currentArea);
         entityManager.setEnemies(currentArea.getEnemies());
         entityManager.setPlayer(player);

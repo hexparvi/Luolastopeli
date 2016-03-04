@@ -5,8 +5,6 @@
  */
 package caves.entities;
 
-import caves.entities.Enemy;
-import caves.entities.Player;
 import java.util.ArrayList;
 import caves.logic.Area;
 import caves.logic.Tile;

@@ -44,22 +44,16 @@ public class Gameplay extends State {
         legalMoves.add("LEFT");
         legalMoves.add("RIGHT");
         
-        restartHandler = new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent e) {
-                if (e.getCode() == KeyCode.R) {
-                    game.restart();
-                }
+        restartHandler = (KeyEvent e) -> {
+            if (e.getCode() == KeyCode.R) {
+                game.restart();
             }
         };
         
-        moveHandler = new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent e) {
-                input = e.getCode().toString();
-                if (legalMoves.contains(input)) {
-                    playerMoved = true;
-                }
+        moveHandler = (KeyEvent e) -> {
+            input = e.getCode().toString();
+            if (legalMoves.contains(input)) {
+                playerMoved = true;
             }
         };
         
@@ -79,12 +73,8 @@ public class Gameplay extends State {
             game.getManager().updateEnemies();
             playerMoved = false;
         }
-        if (game.getPlayer().getCurrentHP() == 0) {
+        if (game.getPlayer().getCurrentHP() == 0 || game.getArea().getEnemies().isEmpty()) {
             game.setState(game.getState("END"));
-        }
-        if (game.getArea().getEnemies().isEmpty()) {
-            game.setState(game.getState("END"));
-
         }
     }
 

@@ -13,6 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import caves.logic.Game;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
 /**
  *
@@ -30,33 +33,27 @@ public class MainMenu extends State {
         super(game);
         vbox = new VBox(35);
         vbox.setPrefWidth(100);
-        vbox.setLayoutX(255);
+        vbox.setLayoutX(270);
         vbox.setLayoutY(350);
 
         manBtn = new Button("How to Play");
         manBtn.setMinWidth(vbox.getPrefWidth());
         manBtn.setScaleX(2);
         manBtn.setScaleY(2);
-        
+
         startBtn = new Button("Start Game");
         startBtn.setMinWidth(vbox.getPrefWidth());
         startBtn.setScaleX(2);
         startBtn.setScaleY(2);
-        
-        startHandler = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                game.setState(game.getState("PLAY"));
-            }
+
+        startHandler = (ActionEvent e) -> {
+            game.setState(game.getState("PLAY"));
         };
-        
-        manHandler = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                game.setState(game.getState("MANUAL"));
-            }
+
+        manHandler = (ActionEvent e) -> {
+            game.setState(game.getState("MANUAL"));
         };
-        
+
         vbox.getChildren().addAll(startBtn, manBtn);
         group.getChildren().add(vbox);
     }
@@ -71,6 +68,12 @@ public class MainMenu extends State {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        Font font = Font.font("Verdana", FontWeight.BOLD, 64);
+        gc.setFont(font);
+        gc.setFill(Color.WHITESMOKE);
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.fillText("Caves", canvas.getWidth() / 2, canvas.getHeight() / 3);
     }
 
     @Override
