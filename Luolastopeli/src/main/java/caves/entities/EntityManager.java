@@ -31,7 +31,7 @@ public class EntityManager {
         for (Enemy enemy : enemies) {
             if (enemy.isNextTo(player)) {
                 enemy.attack(player);
-                game.getStatus().statusMessage(enemy, player);
+                game.getStatusDisplay().statusMessage(enemy, player);
             }
             
             String direction = enemy.findDirection(player.getX(), player.getY());
@@ -84,7 +84,7 @@ public class EntityManager {
         Actor target = area.getEntityFromPos(x, y);
         if (target.getType().equals("ENEMY")) {
             boolean targetDied = player.attack(target);
-            game.getStatus().statusMessage(player, target);
+            game.getStatusDisplay().statusMessage(player, target);
 
             if (targetDied) {
                 area.removeEntityFromPos(target.getX(), target.getY());

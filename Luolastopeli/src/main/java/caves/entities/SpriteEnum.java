@@ -5,7 +5,11 @@
  */
 package caves.entities;
 
+import java.io.File;
+import java.net.URL;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
+import javax.swing.JOptionPane;
 
 /**
  *Stores file paths and loads sprite images.
@@ -23,6 +27,10 @@ public enum SpriteEnum {
     private Image image;
     private boolean imageLoaded;
 
+    /**
+     * Sets imagePath and imageLoaded (false by default).
+     * @param imagePath filepath to image
+     */
     SpriteEnum(String imagePath) {
         this.imagePath = imagePath;
         imageLoaded = false;
@@ -32,7 +40,13 @@ public enum SpriteEnum {
      * Creates a new Image object based on file path.
      */
     public void loadImage() {
-        image = new Image(imagePath);
+        URL url = SpriteEnum.class.getResource("/" + imagePath);
+        if (url == null) {
+            JOptionPane.showMessageDialog(null, "An image file is missing. Closing program.");
+            Platform.exit();
+            System.exit(0);
+        }
+        image = new Image(SpriteEnum.class.getResourceAsStream("/" + imagePath));
         imageLoaded = true;
     }
     

@@ -2,7 +2,7 @@
 
 **Käyttäjät:** Pelaaja
 
-Vuoropohjainen peli, jossa pelaaja voi liikuttaa pelihahmoa kentällä. Pelikentällä on sekä kerättäviä aarteita että vihollisia, joita vastaan pelaaja voi taistella. Peli päättyy, kun pelaaja kuolee tai kun kaikki kentän viholliset ovat kuolleet.
+Vuoropohjainen peli, jossa pelaaja voi liikuttaa pelihahmoa kentällä. Pelikentällä on sekä kerättäviä aarteita että vihollisia, joita vastaan pelaaja voi taistella. Viholliset liikkuvat pelaajan vuoron jälkeen. Vuorollaan viholliset jahtaavat pelaajaa ja hyökkäävät tämän kimppuun. Aarteita keräämällä pelaaja saa pisteitä ja saa takaisin menetettyjä elämäpisteitä. Peli päättyy, kun pelaaja kuolee tai kun kaikki kentän viholliset ovat kuolleet.
 
 **Rakenne:**
 * caves.entities:  

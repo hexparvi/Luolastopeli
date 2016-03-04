@@ -23,12 +23,15 @@ public class Game {
     private Player player;
     private Area currentArea;
     private EntityManager entityManager;
-    private StatusDisplay display;
+    private StatusDisplay statusDisplay;
     private State currentState;
     private Group root;
     private Scene scene;
     private HashMap<String, State> states;
 
+    /**
+     * Initializes variables.
+     */
     public Game() {
         entityManager = new EntityManager();
         root = new Group();
@@ -45,7 +48,7 @@ public class Game {
         generateNewArea();
         changeArea();
 
-        display = new StatusDisplay(player);
+        statusDisplay = new StatusDisplay(player);
         entityManager.setGame(this);
 
         if (states.isEmpty()) {
@@ -129,7 +132,7 @@ public class Game {
     }
 
     public StatusDisplay getDisplay() {
-        return display;
+        return statusDisplay;
     }
 
     public EntityManager getManager() {
@@ -140,8 +143,8 @@ public class Game {
         return player;
     }
 
-    public StatusDisplay getStatus() {
-        return display;
+    public StatusDisplay getStatusDisplay() {
+        return statusDisplay;
     }
 
     public State getState(String statename) {

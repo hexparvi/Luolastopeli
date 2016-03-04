@@ -11,6 +11,11 @@ package caves.entities;
  */
 public class Enemy extends Actor {
 
+    /**
+     * Sets Enemy HP, dmg and type.
+     * @param x x-coordinate of Enemy
+     * @param y y-coordinate of Enemy
+     */
     public Enemy(int x, int y) {
         super(x, y, SpriteEnum.ENEMY_SPRITE.getPath());
         super.setMaxHP(5);

@@ -34,6 +34,10 @@ public class GameOver extends State {
     private Button menuBtn;
     private VBox vbox;
 
+    /**
+     * Sets up the JavaFX elements necessary for drawing this state.
+     * @param game the Game that uses this state
+     */
     public GameOver(Game game) {
         super(game);
         vbox = new VBox(35);

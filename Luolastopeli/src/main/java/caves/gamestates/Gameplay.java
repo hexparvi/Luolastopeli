@@ -30,6 +30,10 @@ public class Gameplay extends State {
     private EventHandler<KeyEvent> restartHandler;
     private ArrayList<String> legalMoves;
 
+    /**
+     * Sets up a list of legal moves and the JavaFX elements necessary for drawing this state.
+     * @param game the Game that uses the state
+     */
     public Gameplay(Game game) {
         super(game);
         hudCanvas = new Canvas(canvas.getWidth(), canvas.getHeight());

@@ -13,6 +13,11 @@ public class Treasure extends Sprite {
     private int worth;
     private int healing;
 
+    /**
+     * Sets Treasure type, worth and healing amount.
+     * @param x x-coordinate of Treasure
+     * @param y y-coordinate of Treasure
+     */
     public Treasure(int x, int y) {
         super(x, y, SpriteEnum.TREASURE_SPRITE.getPath());
         super.setType("TREASURE");

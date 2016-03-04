@@ -28,6 +28,11 @@ public class AreaGenerator {
     private boolean[][] nextCells;
     private double chanceToStartAlive;
 
+    /**
+     * Sets area dimensions, initializes variables.
+     * @param width max width of Area
+     * @param height max height of Area
+     */
     public AreaGenerator(int width, int height) {
         this.areaWidth = width;
         this.areaHeight = height;
@@ -46,9 +51,6 @@ public class AreaGenerator {
         for (int i = 0; i < 6; i++) {
             simulateStep();
         }
-//        for (int j = 0; j < 4; j++) {
-//            closeIsolatedAreas();
-//        }
         fillWithTiles();
     }
 
@@ -99,38 +101,6 @@ public class AreaGenerator {
                 }
             }
         }
-    }
-
-    /**
-     * Fills in unconnected areas in nextCells.
-     */
-    private void closeIsolatedAreas() {
-        nextCells = new boolean[areaWidth][areaHeight];
-        int turnToFloor = 5;
-        int stayAsFloor = 4;
-
-        for (int x = 1; x < areaWidth - 1; x++) {
-            for (int y = 1; y < areaHeight - 1; y++) {
-                int nbs = countAliveNeighbors(x, y);
-                
-                if (prevCells[x][y]) {
-                    if (nbs >= stayAsFloor) {
-                        nextCells[x][y] = true;
-                    } else {
-                        nextCells[x][y] = false;
-                    }
-                    
-                } else {
-                    if (nbs >= turnToFloor) {
-                        nextCells[x][y] = true;
-                    } else {
-                        nextCells[x][y] = false;
-                    }
-                }
-            }
-        }
-
-        prevCells = nextCells;
     }
 
     /**

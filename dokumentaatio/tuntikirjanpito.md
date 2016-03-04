@@ -11,3 +11,5 @@ pe 19.2. 3h Testejä, JavaDocia, uusi luokkakaavio
 pe 26.2. 4h AreaGenerator, muutoksia taisteluun, lisää JavaDocia, käyttöohje  
 ti 1.3. 2h Päävalikko ym.  
 ke 2.3. 2h Säätöä ulkoasun kanssa, käyttöohje päävalikkoon  
+to 3.3. 2h Testejä  
+pe 4.3. 3h Testejä, sekvenssikaaviot, dokumentaation päivitystä ja muotoilua

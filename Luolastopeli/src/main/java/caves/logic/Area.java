@@ -20,9 +20,14 @@ public class Area {
     private Tile[][] tileMap;
     private ArrayList<Enemy> enemies;
 
-    public Area(Tile[][] map, ArrayList<Enemy> entities) {
-        tileMap = map;
-        enemies = entities;
+    /**
+     * Sets tileMap and enemies.
+     * @param tileMap a 2d array containing Tiles for the Area
+     * @param enemies a list of enemies for the Area
+     */
+    public Area(Tile[][] tileMap, ArrayList<Enemy> enemies) {
+        this.tileMap = tileMap;
+        this.enemies = enemies;
     }
 
     /**

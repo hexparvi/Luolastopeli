@@ -18,6 +18,7 @@ public class Screen extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Caves");
         Game game = new Game();
         game.init();
         primaryStage.setScene(game.getScene());

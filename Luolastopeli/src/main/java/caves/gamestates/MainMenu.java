@@ -18,7 +18,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
 /**
- *
+ *Handles drawing main menu.
  * @author hexparvi
  */
 public class MainMenu extends State {
@@ -29,6 +29,10 @@ public class MainMenu extends State {
     private Button manBtn;
     private Button startBtn;
 
+    /**
+     * Sets up the JavaFX elements needed to draw this state.
+     * @param game the Game that uses this state
+     */
     public MainMenu(Game game) {
         super(game);
         vbox = new VBox(35);

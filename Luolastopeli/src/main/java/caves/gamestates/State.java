@@ -22,6 +22,10 @@ public abstract class State {
     Group group;
     GraphicsContext gc;
 
+    /**
+     * Sets up the JavaFX elements needed for drawing any State.
+     * @param game the Game that uses this state
+     */
     public State(Game game) {
         this.game = game;
         this.group = new Group();

@@ -23,6 +23,12 @@ public class Tile {
     private Treasure item;
     private String type;
 
+    /**
+     * Sets Tile coordinates and type.
+     * @param x x-coordinate of Tile
+     * @param y y-coordinate of Tile
+     * @param type type of Tile
+     */
     public Tile(int x, int y, String type) {
         this.x = x;
         this.y = y;

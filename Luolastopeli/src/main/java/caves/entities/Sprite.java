@@ -16,6 +16,12 @@ abstract public class Sprite {
     String type;
     String imgPath;
 
+    /**
+     * Sets Sprite coordinates and imgPath.
+     * @param x x-coordinate of Sprite
+     * @param y y-coordinate of Sprite
+     * @param imgPath filepath of Sprite image
+     */
     protected Sprite(int x, int y, String imgPath) {
         this.imgPath = imgPath;
         this.x = x;

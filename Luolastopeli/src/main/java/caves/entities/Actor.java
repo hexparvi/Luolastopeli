@@ -18,6 +18,12 @@ abstract public class Actor extends Sprite {
     private int currentHP;
     private int dmg;
 
+    /**
+     * Sets Actor speed.
+     * @param x x-coordinate of Actor
+     * @param y y-coordinate of Actor
+     * @param imgPath file path for Actor image
+     */
     protected Actor(int x, int y, String imgPath) {
         super(x, y, imgPath);
         speed = 1;

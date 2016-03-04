@@ -13,6 +13,11 @@ package caves.entities;
 public class Player extends Actor {
     private int points;
 
+    /**
+     * Sets Player HP, dmg, type and points.
+     * @param x x-coordinate of Player
+     * @param y y-coordinate of Player
+     */
     public Player(int x, int y) {
         super(x, y, SpriteEnum.PLAYER_SPRITE.getPath());
         super.setMaxHP(10);

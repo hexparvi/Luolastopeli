@@ -18,7 +18,7 @@ import javafx.scene.text.FontWeight;
 import caves.logic.Game;
 
 /**
- *
+ *Handles drawing game manual.
  * @author hexparvi
  */
 public class Manual extends State {
@@ -27,6 +27,10 @@ public class Manual extends State {
     private Button backBtn;
     private EventHandler<ActionEvent> backHandler;
 
+    /**
+     * Sets up the JavaFX elements needed for drawing this state.
+     * @param game the Game that uses this state
+     */
     public Manual(Game game) {
         super(game);
         vbox = new VBox();

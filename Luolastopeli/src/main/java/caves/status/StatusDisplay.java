@@ -24,6 +24,10 @@ public class StatusDisplay {
     private ArrayList<String> messages;
     private Player player;
 
+    /**
+     * Sets player and creates a new List of status messages.
+     * @param player the Player to track the status of
+     */
     public StatusDisplay(Player player) {
         this.player = player;
         this.messages = new ArrayList<>();
@@ -31,29 +35,32 @@ public class StatusDisplay {
 
     /**
      * Draws HUD.
+     *
      * @param gc GraphicsContext to be drawn on
      */
     public void draw(GraphicsContext gc) {
         gc.setFill(Color.CRIMSON);
-        gc.fillRect(30, 50, player.getMaxHP() * 10, 10);
+        gc.fillRect(30, 15, player.getMaxHP() * 15, 20);
         gc.setFill(Color.RED);
-        gc.fillRect(30, 50, player.getCurrentHP() * 10, 10);
-        
-        Font font = Font.font("Verdana", FontWeight.NORMAL, 12);
+        gc.fillRect(30, 15, player.getCurrentHP() * 15, 20);
+
+        Font font = Font.font("Verdana", FontWeight.NORMAL, 15);
         gc.setFont(font);
-        gc.setFill(Color.BLACK);
-        gc.fillText("Points: " + player.getPoints(), 500, 50);
         
+        gc.setFill(Color.BLACK);
+        gc.fillText("HP: " + player.getCurrentHP() + "/" + player.getMaxHP(), 30, 50);
+        gc.fillText("Points: " + player.getPoints(), 500, 30);
+
         drawMessages(gc);
     }
-    
+
     private void drawMessages(GraphicsContext gc) {
         ListIterator<String> li = messages.listIterator(messages.size());
 
         int counter = 0;
         while (li.hasPrevious()) {
             gc.setFill(Color.color(0, 0, 0, 1.0 * (Math.pow(0.80, counter))));
-            gc.fillText(li.previous(), 400, 600 - counter * 15);
+            gc.fillText(li.previous(), 390, 600 - counter * 15);
             counter++;
         }
     }
